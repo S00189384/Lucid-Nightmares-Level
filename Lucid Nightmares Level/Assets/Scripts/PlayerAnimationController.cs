@@ -6,7 +6,8 @@ public enum PlayerMovementState
 {
     Idle, //0
     Jogging, //1
-    Somersault //2
+    Somersault, //2
+    Dash //3
 }
 
 public class PlayerAnimationController : MonoBehaviour

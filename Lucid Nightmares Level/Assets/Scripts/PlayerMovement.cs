@@ -40,19 +40,23 @@ public class PlayerMovement : CharacterMovement
             playerAnimation.SetState(PlayerMovementState.Idle);
         }
 
-        if (Input.GetKeyDown(KeyCode.A) && isOnJumpingSurface || Input.GetKeyDown(KeyCode.D) && isOnJumpingSurface)
+        if (Input.GetKey(KeyCode.W) && isOnJumpingSurface)
+        {
+            body.velocity = new Vector2(body.velocity.x, 0);
+            Jump();
+
+            if (body.velocity.y > 0.5 || body.velocity.y < -0.5)
+                playerAnimation.SetState(PlayerMovementState.Somersault);
+        }
+        else if (Input.GetKey(KeyCode.A) && isOnJumpingSurface || Input.GetKey(KeyCode.D) && isOnJumpingSurface)
         {
             playerAnimation.SetState(PlayerMovementState.Jogging);
         }
-        else if (Input.GetKeyDown(KeyCode.W) && isOnJumpingSurface)
-        {
-            Jump();
-            playerAnimation.SetState(PlayerMovementState.Somersault);
-        }
 
-        else if (Input.GetKeyDown(KeyCode.E) && isOnJumpingSurface)
+        if (Input.GetKeyDown(KeyCode.E) && isOnJumpingSurface)
         {
             Dash(horizontal);
+            playerAnimation.SetState(PlayerMovementState.Dash);
         }
 
     }
