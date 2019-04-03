@@ -6,10 +6,14 @@ public class PlayerMovement : CharacterMovement
 {
     public float horizontal, vertical;
     Vector2 customVelocity;
+    SpriteRenderer sprite;
+    PlayerAnimationController playerAnimation;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        playerAnimation = GetComponent<PlayerAnimationController>();
     }
 
     void Update()
@@ -21,12 +25,32 @@ public class PlayerMovement : CharacterMovement
         customVelocity.y = body.velocity.y;
         body.velocity = customVelocity;
 
-        if (Input.GetKeyDown(KeyCode.Space) && isOnJumpingSurface || Input.GetKeyDown(KeyCode.UpArrow) && isOnJumpingSurface || Input.GetKeyDown(KeyCode.W) && isOnJumpingSurface)
+        if(body.velocity.x < 0)
         {
-            Jump();
+            sprite.flipX = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && isOnJumpingSurface)
+        else
+        {
+            sprite.flipX = false;
+        }
+
+        if (body.velocity.x == 0 && body.velocity.y == 0)
+        {
+            playerAnimation.SetState(PlayerMovementState.Idle);
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) && isOnJumpingSurface || Input.GetKeyDown(KeyCode.D) && isOnJumpingSurface)
+        {
+            playerAnimation.SetState(PlayerMovementState.Jogging);
+        }
+        else if (Input.GetKeyDown(KeyCode.W) && isOnJumpingSurface)
+        {
+            Jump();
+            playerAnimation.SetState(PlayerMovementState.Somersault);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.E) && isOnJumpingSurface)
         {
             Dash(horizontal);
         }

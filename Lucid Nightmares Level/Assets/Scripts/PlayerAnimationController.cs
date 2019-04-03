@@ -4,17 +4,16 @@ using UnityEngine;
 
 public enum PlayerMovementState
 {
-    Idle,
-    Jogging
+    Idle, //0
+    Jogging, //1
+    Somersault //2
 }
 
 public class PlayerAnimationController : MonoBehaviour
 {
     public PlayerMovementState playerState;
     PlayerMovementState previousPlayerState;
-
     Animator animator;
-
 
 	// Use this for initialization
 	void Start ()
@@ -25,11 +24,7 @@ public class PlayerAnimationController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(playerState != previousPlayerState)
-        {
-            animator.SetInteger("PlayerState", (int)playerState);
-        }
-		
+        animator.SetInteger("PlayerState", (int)playerState);   
 	}
 
     public void SetState(PlayerMovementState newState)
