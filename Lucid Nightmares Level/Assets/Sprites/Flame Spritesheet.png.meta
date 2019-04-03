@@ -1,25 +1,11 @@
 fileFormatVersion: 2
-guid: eb5e384bd5cecdd4d92a8a0aeb4e3471
+guid: e60b67b51b413df4cb5d4b3d8bb68a44
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Torch Spritesheet 2_0
-    21300002: Torch Spritesheet 2_1
-    21300004: Torch Spritesheet 2_2
-    21300006: Torch Spritesheet 2_3
-    21300008: Torch Spritesheet 2_4
-    21300010: Torch Spritesheet 2_5
-    21300012: Torch Spritesheet 2_6
-    21300014: Torch Spritesheet 2_7
-    21300016: Torch Spritesheet 2_8
-    21300018: Torch Spritesheet 2_9
-    21300020: Torch Spritesheet 2_10
-    21300022: Torch Spritesheet 2_11
-    21300024: Torch Spritesheet 2_12
-    21300026: Torch Spritesheet 2_13
-    21300028: Torch Spritesheet 2_14
-    21300030: Torch Spritesheet 2_15
-    21300032: Torch Spritesheet 2_16
-    21300034: Torch Spritesheet 2_17
+    21300000: Flame Spritesheet_0
+    21300002: Flame Spritesheet_1
+    21300004: Flame Spritesheet_3
+    21300006: Flame Spritesheet_4
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -100,81 +86,81 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Torch Spritesheet 2_0
+      name: Flame Spritesheet_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 451
+        x: 13
+        y: 546
         width: 200
-        height: 390
+        height: 259
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 146, z: 0, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23f8fd17f3a63814bba2215d8d33d03c
+      spriteID: 49870c5df151d124fb61e4408a71178a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torch Spritesheet 2_1
+      name: Flame Spritesheet_1
       rect:
         serializedVersion: 2
-        x: 274
-        y: 447
+        x: 261
+        y: 545
         width: 200
-        height: 394
+        height: 260
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 148, z: 0, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f7e33a29248fbc49a46831a7dbdf626
+      spriteID: 4e9be8401c932e44896de1b9c16618ee
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torch Spritesheet 2_3
+      name: Flame Spritesheet_3
       rect:
         serializedVersion: 2
-        x: 509
-        y: 440
+        x: 507
+        y: 545
         width: 200
-        height: 401
+        height: 260
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 155, z: 0, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7212b6385d53de04580cc0ded1886422
+      spriteID: d310ba3c4ab6af84ab15bfe5494813c0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torch Spritesheet 2_4
+      name: Flame Spritesheet_4
       rect:
         serializedVersion: 2
-        x: 754
-        y: 438
+        x: 758
+        y: 546
         width: 200
-        height: 404
+        height: 258
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 157, z: 0, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a540e65243b78a4eac25ff64eb58d91
+      spriteID: 06b30151fe4483d419df12de2a7b07bd
       vertices: []
       indices: 
       edges: []
@@ -182,7 +168,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 91a55596a6d37584ab51fb1538f4fcdd
+    spriteID: 088368ccf4840eb498b74e8da1ed66d0
     vertices: []
     indices: 
     edges: []
