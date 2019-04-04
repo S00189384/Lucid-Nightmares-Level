@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Jumpable
   - Trapdoor
+  - StopMoving
+  - Key3
   layers:
   - Default
   - TransparentFX

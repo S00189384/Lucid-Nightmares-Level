@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ChestPlatformController : MonoBehaviour
 {
-    public GameObject movePosition;
-    public float speed = 1;
-    Vector2 direction = new Vector2(-1, 0);
+    public Transform movePosition;
+    public float moveSpeed = 1;
+    Vector2 startingPosition;
     PlayerData playerData;
     Rigidbody2D body;
 
@@ -15,16 +15,27 @@ public class ChestPlatformController : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
-	}
+        startingPosition = transform.position;
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(playerData.HasKey == true)
+        if (playerData.HasKey3 == true)
         {
-            body.velocity = (movePosition.transform.position - transform.position).normalized * speed;
+            body.MovePosition(Vector2.MoveTowards(transform.position, movePosition.position, moveSpeed * Time.deltaTime));
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.collider.transform.SetParent(transform);
         }
 
-	}
+
+    }
+
 
 }

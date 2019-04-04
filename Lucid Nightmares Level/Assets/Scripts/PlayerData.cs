@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    public bool HasKey = true;
+    public bool HasKey1 = false;
+    public bool HasKey2 = false;
+    public bool HasKey3 = false;
 
 
 
@@ -42,9 +44,10 @@ public class PlayerData : MonoBehaviour
             Destroy(hitObject);
         }
 
-        if(hitObject.tag == "Key")
+        if(hitObject.tag == "Key3")
         {
-            HasKey = true;
+            Destroy(hitObject);
+            HasKey3 = true;
         }
     }
 

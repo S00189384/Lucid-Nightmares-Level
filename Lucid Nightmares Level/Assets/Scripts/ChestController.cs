@@ -6,11 +6,14 @@ public enum ChestState
 {
     Closed, // 0
     Opening, // 1
-    Opened // 2
 }
 
 public class ChestController : MonoBehaviour
 {
+    public GameObject player;
+    public GameObject key;
+    public bool keySpawned = false;
+    public float openDistance = 5f;
     public ChestState chestState;
     ChestState previousChestState;
     Animator animator;
@@ -25,6 +28,13 @@ public class ChestController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if(Vector2.Distance(transform.position,player.transform.position) <= openDistance)
+        {
+            SetState(ChestState.Opening);
+            SpawnKey();
+
+        }
+
         animator.SetInteger("ChestState", (int)chestState);
     }
 
@@ -36,5 +46,18 @@ public class ChestController : MonoBehaviour
             chestState = newState;
         }
     }
+
+    void SpawnKey()
+    {
+        if(keySpawned == false)
+        {
+            GameObject go = Instantiate(key, transform.position, Quaternion.identity);
+            go.GetComponent<Rigidbody2D>().velocity = new Vector2(2f, 4);
+        }
+
+        keySpawned = true;
+
+    }
+
 
 }
