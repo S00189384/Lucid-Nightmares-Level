@@ -8,6 +8,8 @@ public class PlayerMovement : CharacterMovement
     Vector2 customVelocity;
     SpriteRenderer sprite;
     PlayerAnimationController playerAnimation;
+    public bool IsAttacking = false;
+    public int FacingDirection = 1;
 
     void Start()
     {
@@ -25,17 +27,28 @@ public class PlayerMovement : CharacterMovement
         customVelocity.y = body.velocity.y;
         body.velocity = customVelocity;
 
-        if(body.velocity.x < 0)
+        if(Input.GetKey(KeyCode.A))
+        {
+            FacingDirection = -1;
+        }
+
+        else if (Input.GetKey(KeyCode.D))
+        {
+            FacingDirection = 1;
+        }
+
+        if (FacingDirection == -1)
         {
             sprite.flipX = true;
         }
 
-        else
+        else if(FacingDirection == 1)
         {
             sprite.flipX = false;
         }
 
-        if (body.velocity.x == 0 && body.velocity.y == 0)
+
+        if (body.velocity.x == 0 && body.velocity.y == 0 && IsAttacking == false)
         {
             playerAnimation.SetState(PlayerMovementState.Idle);
         }
@@ -53,11 +66,17 @@ public class PlayerMovement : CharacterMovement
             playerAnimation.SetState(PlayerMovementState.Jogging);
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && isOnJumpingSurface)
+        if (Input.GetKey(KeyCode.E) && isOnJumpingSurface)
         {
             Dash(horizontal);
             playerAnimation.SetState(PlayerMovementState.Dash);
         }
 
+        if (Input.GetKey(KeyCode.Mouse0) && isOnJumpingSurface)
+        {
+            playerAnimation.SetState(PlayerMovementState.Attack1);
+        }
+
     }
+
 }

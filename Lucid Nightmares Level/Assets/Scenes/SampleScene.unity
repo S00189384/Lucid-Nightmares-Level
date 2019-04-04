@@ -348,7 +348,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 171290739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3899994, y: 1.049, z: 0}
+  m_LocalPosition: {x: -0.4, y: 1.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1209450577}
@@ -393,7 +393,7 @@ MonoBehaviour:
   player: {fileID: 1770696902}
   key: {fileID: 1990251096108258, guid: e1443069d2483fe4ab1dbf25d17e9650, type: 2}
   keySpawned: 0
-  openDistance: 5
+  openDistance: 3
   chestState: 0
 --- !u!1001 &435445605
 Prefab:
@@ -2268,6 +2268,8 @@ MonoBehaviour:
   movementSpeed: 5
   horizontal: 0
   vertical: 0
+  IsAttacking: 0
+  FacingDirection: 1
 --- !u!95 &1770696904
 Animator:
   serializedVersion: 3
@@ -2338,7 +2340,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1770696902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.25, y: -0.22, z: 0}
+  m_LocalPosition: {x: -1.82, y: -0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6064,7 +6066,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1836709736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.946, y: 0.002, z: 0}
+  m_LocalPosition: {x: 2.946, y: -0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1209450577}

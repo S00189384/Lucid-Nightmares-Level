@@ -13,7 +13,7 @@ public class ChestController : MonoBehaviour
     public GameObject player;
     public GameObject key;
     public bool keySpawned = false;
-    public float openDistance = 5f;
+    public float openDistance = 3f;
     public ChestState chestState;
     ChestState previousChestState;
     Animator animator;
@@ -28,7 +28,8 @@ public class ChestController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(Vector2.Distance(transform.position,player.transform.position) <= openDistance)
+        // If the player is within a certain distance AND he's on the right of the platform, the chest opens. 
+        if(Vector2.Distance(transform.position,player.transform.position) <= openDistance && player.transform.position.x > transform.parent.position.x)
         {
             SetState(ChestState.Opening);
             SpawnKey();
@@ -58,6 +59,4 @@ public class ChestController : MonoBehaviour
         keySpawned = true;
 
     }
-
-
 }
