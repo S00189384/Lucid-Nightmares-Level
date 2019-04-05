@@ -28,7 +28,7 @@ public class PlayerMovement : CharacterMovement
         body.velocity = customVelocity;
 
 
-        // Sprite faces correct position.
+        // Code so sprite faces correct position.
         if(Input.GetKey(KeyCode.A))
         {
             FacingDirection = -1;
@@ -88,6 +88,11 @@ public class PlayerMovement : CharacterMovement
         if (Input.GetMouseButton(2) && isOnJumpingSurface)
         {
             playerAnimation.SetState(PlayerMovementState.Attack3);
+        }
+
+        if(Input.GetKey(KeyCode.Space) && isOnJumpingSurface)
+        {
+            playerAnimation.SetState(PlayerMovementState.SpecialAbility);
         }
     }
 

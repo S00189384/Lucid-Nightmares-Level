@@ -9,8 +9,6 @@ public class PlayerData : MonoBehaviour
     public bool HasKey3 = false;
 
 
-
-
     private void Start()
     {
         
@@ -31,11 +29,6 @@ public class PlayerData : MonoBehaviour
     {
         HandleCollision(collision.gameObject);
     }
-
-
-
-
-
 
     public void HandleCollision(GameObject hitObject)
     {
