@@ -27,6 +27,8 @@ public class PlayerMovement : CharacterMovement
         customVelocity.y = body.velocity.y;
         body.velocity = customVelocity;
 
+
+        // Sprite faces correct position.
         if(Input.GetKey(KeyCode.A))
         {
             FacingDirection = -1;
@@ -46,6 +48,7 @@ public class PlayerMovement : CharacterMovement
         {
             sprite.flipX = false;
         }
+
 
 
         if (body.velocity.x == 0 && body.velocity.y == 0 && IsAttacking == false)
@@ -72,11 +75,20 @@ public class PlayerMovement : CharacterMovement
             playerAnimation.SetState(PlayerMovementState.Dash);
         }
 
-        if (Input.GetKey(KeyCode.Mouse0) && isOnJumpingSurface)
+        if (Input.GetMouseButton(0) && isOnJumpingSurface)
         {
             playerAnimation.SetState(PlayerMovementState.Attack1);
         }
 
+        if (Input.GetMouseButton(1) && isOnJumpingSurface)
+        {
+            playerAnimation.SetState(PlayerMovementState.Attack2);
+        }
+
+        if (Input.GetMouseButton(2) && isOnJumpingSurface)
+        {
+            playerAnimation.SetState(PlayerMovementState.Attack3);
+        }
     }
 
 }

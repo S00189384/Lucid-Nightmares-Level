@@ -8,7 +8,10 @@ public enum PlayerMovementState
     Jogging, //1
     Somersault, //2
     Dash, //3
-    Attack1 //4
+    Attack1, //4
+    Attack2, //5
+    Attack3, //6
+    SpecialAbility //7
 }
 
 public class PlayerAnimationController : MonoBehaviour

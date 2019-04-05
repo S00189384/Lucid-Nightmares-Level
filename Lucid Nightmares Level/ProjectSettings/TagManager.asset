@@ -8,6 +8,7 @@ TagManager:
   - Trapdoor
   - StopMoving
   - Key3
+  - Ghost
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class CharacterMovement : MonoBehaviour
     protected Rigidbody2D body;
     public Vector2 JumpForce = new Vector2(0, 5);
     public Vector2 DashForce = new Vector2(10, 0);
-    protected bool isOnJumpingSurface = false;
+    public bool isOnJumpingSurface = false;
     public float movementSpeed = 5;
 
     public virtual void Jump()
