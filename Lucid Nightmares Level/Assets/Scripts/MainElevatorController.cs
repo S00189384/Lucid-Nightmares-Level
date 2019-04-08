@@ -11,13 +11,13 @@ public enum ElevatorState
 
 public class MainElevatorController : MonoBehaviour
 {
-    float distanceToNodeTolerance = 0.2f;
     public ElevatorState elevatorState;
+    ElevatorState previousElevatorState;
     Rigidbody2D body;
     public float moveSpeed = 4;
     public Transform topPosition;
     public Transform bottomPosition;
-
+    public Vector2 targetPosition;
 
 	// Use this for initialization
 	void Start ()
@@ -29,18 +29,40 @@ public class MainElevatorController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
-        if(transform.position == topPosition.position)
+        /*transform.position == topPosition.position*/
+        if (transform.position == topPosition.position)
         {
-            body.MovePosition(Vector2.MoveTowards(transform.position, bottomPosition.position, moveSpeed * Time.deltaTime));
-            elevatorState = ElevatorState.AtTop;
+            SetState(ElevatorState.AtTop);
+            targetPosition = bottomPosition.position;
         }
 
-        if (transform.position == bottomPosition.position)
+        else if (transform.position == bottomPosition.position)
         {
-            body.MovePosition(Vector2.MoveTowards(transform.position, topPosition.position, moveSpeed * Time.deltaTime));
-            elevatorState = ElevatorState.AtBottom;
+            SetState(ElevatorState.AtBottom);
+            targetPosition = topPosition.position;
+            Debug.Log("inposition");
         }
 
+        else
+        {
+            SetState(ElevatorState.InMiddle);
+        }
+
+    }
+
+
+    public void MoveToTarget()
+    {
+        body.velocity = new Vector2((targetPosition.x - transform.position.x), (targetPosition.y - transform.position.y)) * moveSpeed;
+        //body.MovePosition(Vector2.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime));
+    }
+
+    public void SetState(ElevatorState newState)
+    {
+        if (newState != elevatorState)
+        {
+            previousElevatorState = elevatorState;
+            elevatorState = newState;
+        }
     }
 }

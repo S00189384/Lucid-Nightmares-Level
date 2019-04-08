@@ -227,9 +227,10 @@ GameObject:
   m_Component:
   - component: {fileID: 84712900}
   - component: {fileID: 84712899}
+  - component: {fileID: 84712901}
   m_Layer: 0
   m_Name: Elevator Point 2
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,6 +293,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &84712901
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 84712898}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.32}
+  m_EdgeRadius: 0
 --- !u!1001 &84899527
 Prefab:
   m_ObjectHideFlags: 0
@@ -964,11 +990,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4204361808890352, guid: b0432e7575a2feb418b68334a7c8747b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.018865585
+      value: -0.069999695
       objectReference: {fileID: 0}
     - target: {fileID: 4204361808890352, guid: b0432e7575a2feb418b68334a7c8747b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.27
+      value: 2.26
       objectReference: {fileID: 0}
     - target: {fileID: 4204361808890352, guid: b0432e7575a2feb418b68334a7c8747b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1000,12 +1026,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4204361808890352, guid: b0432e7575a2feb418b68334a7c8747b, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.40000108
+      value: 0.4000018
       objectReference: {fileID: 0}
     - target: {fileID: 4204361808890352, guid: b0432e7575a2feb418b68334a7c8747b, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.40000108
+      value: 0.4000018
       objectReference: {fileID: 0}
+    - target: {fileID: 114688411743417622, guid: b0432e7575a2feb418b68334a7c8747b,
+        type: 2}
+      propertyPath: elevator
+      value: 
+      objectReference: {fileID: 2127288548}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0432e7575a2feb418b68334a7c8747b, type: 2}
   m_IsPrefabParent: 0
@@ -1107,7 +1138,7 @@ GameObject:
   - component: {fileID: 590125881}
   m_Layer: 0
   m_Name: Tile (14)
-  m_TagString: Jumpable
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2601,7 +2632,7 @@ GameObject:
   - component: {fileID: 1304733431}
   m_Layer: 0
   m_Name: Tile (16)
-  m_TagString: Jumpable
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3196,7 +3227,7 @@ GameObject:
   - component: {fileID: 1484389867}
   m_Layer: 0
   m_Name: Tile (15)
-  m_TagString: Jumpable
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3581,7 +3612,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1770696902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.75, y: -0.21, z: 0}
+  m_LocalPosition: {x: 14.2, y: -0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7712,7 +7743,7 @@ GameObject:
   - component: {fileID: 1836709739}
   m_Layer: 0
   m_Name: Tile (17)
-  m_TagString: Jumpable
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8170,7 +8201,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2127288548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.488865, y: -1.47, z: 0}
+  m_LocalPosition: {x: 20.49, y: -1.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1448619079}
@@ -8245,6 +8276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elevatorState: 0
-  moveSpeed: 4
+  moveSpeed: 0.5
   topPosition: {fileID: 158956650}
   bottomPosition: {fileID: 84712900}
+  targetPosition: {x: 0, y: 0}

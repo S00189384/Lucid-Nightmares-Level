@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : CharacterMovement
 {
+    Rigidbody2D platformRigidBody;
+    GameObject currentPlatform;
     public float horizontal, vertical;
     Vector2 customVelocity;
     SpriteRenderer sprite;
     PlayerAnimationController playerAnimation;
     public bool IsAttacking = false;
+    bool isOnPlatform = false;
     public int FacingDirection = 1;
 
     void Start()
@@ -26,6 +29,11 @@ public class PlayerMovement : CharacterMovement
         customVelocity.x = horizontal * movementSpeed;
         customVelocity.y = body.velocity.y;
         body.velocity = customVelocity;
+
+        if(isOnPlatform)
+        {
+            body.velocity += platformRigidBody.velocity;
+        }
 
 
         // Code so sprite faces correct position.
@@ -109,7 +117,10 @@ public class PlayerMovement : CharacterMovement
     {
         if(collision.gameObject.tag == "MovingPlatform")
         {
-            transform.parent = collision.gameObject.transform;
+            Debug.Log("sfgz");
+            currentPlatform = collision.gameObject;
+            isOnPlatform = true;
+            platformRigidBody = currentPlatform.GetComponent<Rigidbody2D>();
         }
 
         base.OnCollisionEnter2D(collision);
@@ -119,7 +130,9 @@ public class PlayerMovement : CharacterMovement
     {
         if (collision.gameObject.tag == "MovingPlatform")
         {
-            transform.parent = null;
+            currentPlatform = null;
+            isOnPlatform = false;
+            platformRigidBody = null;
         }
 
         base.OnCollisionExit2D(collision);

@@ -42,6 +42,7 @@ public class PlayerData : MonoBehaviour
             Destroy(hitObject);
             HasKey3 = true;
         }
+
     }
 
 
