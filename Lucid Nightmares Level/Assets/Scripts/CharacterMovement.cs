@@ -22,7 +22,7 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.contacts.Length > 0 && collision.gameObject.tag == "Jumpable")
+        if (collision.contacts.Length > 0 && collision.gameObject.tag == "Jumpable" || collision.gameObject.tag == "MovingPlatform")
         {
             ContactPoint2D contact = collision.contacts[0];
 
@@ -39,7 +39,7 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Jumpable")
+        if (collision.gameObject.tag == "Jumpable" || collision.gameObject.tag == "MovingPlatform")
         {
             isOnJumpingSurface = false;
         }

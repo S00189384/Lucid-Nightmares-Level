@@ -75,25 +75,54 @@ public class PlayerMovement : CharacterMovement
             playerAnimation.SetState(PlayerMovementState.Dash);
         }
 
-        if (Input.GetMouseButton(0) && isOnJumpingSurface)
+        if (Input.GetMouseButtonDown(0) && isOnJumpingSurface)
         {
             playerAnimation.SetState(PlayerMovementState.Attack1);
+            IsAttacking = true;
         }
 
-        if (Input.GetMouseButton(1) && isOnJumpingSurface)
+        if (Input.GetMouseButtonDown(1) && isOnJumpingSurface)
         {
             playerAnimation.SetState(PlayerMovementState.Attack2);
+            IsAttacking = true;
         }
 
-        if (Input.GetMouseButton(2) && isOnJumpingSurface)
+        if (Input.GetMouseButtonDown(2) && isOnJumpingSurface)
         {
             playerAnimation.SetState(PlayerMovementState.Attack3);
+            IsAttacking = true;
         }
 
         if(Input.GetKey(KeyCode.Space) && isOnJumpingSurface)
         {
             playerAnimation.SetState(PlayerMovementState.SpecialAbility);
+            IsAttacking = true;
         }
+    }
+
+    public void EndAttack()
+    {
+        IsAttacking = false;
+    }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "MovingPlatform")
+        {
+            transform.parent = collision.gameObject.transform;
+        }
+
+        base.OnCollisionEnter2D(collision);
+    }
+
+    protected override void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "MovingPlatform")
+        {
+            transform.parent = null;
+        }
+
+        base.OnCollisionExit2D(collision);
     }
 
 }

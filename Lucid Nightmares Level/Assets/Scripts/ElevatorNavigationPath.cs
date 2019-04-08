@@ -8,7 +8,6 @@ public class ElevatorNavigationPath : MonoBehaviour
 
     public int NodeCount { get { return Nodes.Length; } }
 
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
