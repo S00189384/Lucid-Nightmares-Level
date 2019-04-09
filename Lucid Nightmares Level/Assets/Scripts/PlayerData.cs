@@ -20,7 +20,7 @@ public class PlayerData : MonoBehaviour
 
     private void Update()
     {
-        currentHealth -= 1;
+
     }
 
 
