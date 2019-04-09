@@ -8,14 +8,16 @@ public class PlayerData : MonoBehaviour
     public bool HasKey2 = false;
     public bool HasKey3 = false;
 
-    public int health;
     public int maxHealth = 100;
     public int currentHealth;
+    public int maxStamina = 100;
+    public int currentStamina;
 
 
     private void Start()
     {
         currentHealth = maxHealth;
+        currentStamina = maxStamina;
     }
 
     private void Update()

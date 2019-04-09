@@ -11,6 +11,7 @@ TagManager:
   - Ghost
   - ElevatorSwitch
   - MovingPlatform
+  - Mace
   layers:
   - Default
   - TransparentFX

@@ -1,16 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
+    PlayerData playerData;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
+
+    public void CheckIfGameOver()
+    {
+        if(playerData.currentHealth <= 0)
+        {
+
+        }
+    }
+
+    public void DeductHealth(int damage)
+    {
+        playerData.currentHealth -= damage;
+        CheckIfGameOver();
+    }
+
+    public void TeleportToCheckpoint()
+    {
+
+    }
+
+
+
 }
