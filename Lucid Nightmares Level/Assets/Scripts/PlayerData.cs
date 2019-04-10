@@ -8,10 +8,10 @@ public class PlayerData : MonoBehaviour
     public bool HasKey2 = false;
     public bool HasKey3 = false;
 
-    public int maxHealth = 100;
-    public int currentHealth;
-    public int maxStamina = 100;
-    public int currentStamina;
+    public float maxHealth = 100;
+    public float currentHealth;
+    public float maxStamina = 100;
+    public float currentStamina;
 
 
     private void Start()
@@ -22,7 +22,7 @@ public class PlayerData : MonoBehaviour
 
     private void Update()
     {
-
+ 
     }
 
 

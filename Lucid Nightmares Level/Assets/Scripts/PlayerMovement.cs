@@ -33,7 +33,6 @@ public class PlayerMovement : CharacterMovement
         if(isOnPlatform)
         {
             body.velocity += platformRigidBody.velocity;
-            Debug.Log(platformRigidBody.velocity);
         }
 
 
