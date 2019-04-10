@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     PlayerData playerData;
+    public GameObject player;
 
 	// Use this for initialization
 	void Start ()
@@ -23,7 +24,7 @@ public class GameController : MonoBehaviour
     {
         if(playerData.currentHealth <= 0)
         {
-
+            TeleportToCheckpoint();
         }
     }
 
@@ -35,7 +36,7 @@ public class GameController : MonoBehaviour
 
     public void TeleportToCheckpoint()
     {
-
+        player.transform.position = playerData.checkpointPosition;
     }
 
 

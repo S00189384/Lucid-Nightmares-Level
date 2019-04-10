@@ -13,11 +13,16 @@ public class PlayerData : MonoBehaviour
     public float maxStamina = 100;
     public float currentStamina;
 
+    public Vector3 checkpointPosition;
+
+    GameController gameController;
 
     private void Start()
     {
         currentHealth = maxHealth;
         currentStamina = maxStamina;
+        checkpointPosition = transform.position;
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     private void Update()
@@ -47,6 +52,22 @@ public class PlayerData : MonoBehaviour
         {
             Destroy(hitObject);
             HasKey3 = true;
+        }
+
+        if(hitObject.tag == "Mace")
+        {
+            gameController.DeductHealth(100);
+        }
+
+        if(hitObject.tag == "FireSkull")
+        {
+            gameController.DeductHealth(40);
+            Destroy(hitObject);
+        }
+
+        if(hitObject.tag == "Checkpoint")
+        {
+            checkpointPosition = hitObject.transform.position;
         }
 
     }

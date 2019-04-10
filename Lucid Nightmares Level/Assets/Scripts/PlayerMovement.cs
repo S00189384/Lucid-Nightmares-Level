@@ -117,7 +117,6 @@ public class PlayerMovement : CharacterMovement
     {
         if(collision.gameObject.tag == "MovingPlatform")
         {
-            Debug.Log("sfgz");
             currentPlatform = collision.gameObject;
             isOnPlatform = true;
             platformRigidBody = currentPlatform.GetComponent<Rigidbody2D>();

@@ -15,6 +15,7 @@ TagManager:
   - FireSkull
   - TopElevator
   - BottomElevator
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
