@@ -11,7 +11,7 @@ public class PlayerMovement : CharacterMovement
     SpriteRenderer sprite;
     PlayerAnimationController playerAnimation;
     public bool IsAttacking = false;
-    bool isOnPlatform = false;
+    public bool isOnPlatform = false;
     public int FacingDirection = 1;
 
     void Start()
@@ -33,6 +33,7 @@ public class PlayerMovement : CharacterMovement
         if(isOnPlatform)
         {
             body.velocity += platformRigidBody.velocity;
+            Debug.Log(platformRigidBody.velocity);
         }
 
 

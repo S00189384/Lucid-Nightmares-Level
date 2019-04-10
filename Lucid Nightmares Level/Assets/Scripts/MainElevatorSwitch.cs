@@ -8,16 +8,19 @@ public class MainElevatorSwitch : MonoBehaviour
     public bool IsHittable;
     public Sprite buttonNotPressed;
     public Sprite buttonPressed;
+    MainElevatorController elevatorController;
 
     private void Start()
     {
-
+        elevatorController = elevator.GetComponent<MainElevatorController>();
     }
 
 
     private void Update()
     {
-        if (elevator.GetComponent<MainElevatorController>().elevatorState == ElevatorState.AtTop || elevator.GetComponent<MainElevatorController>().elevatorState == ElevatorState.AtBottom)
+        Debug.Log(elevatorController.elevatorState);
+
+        if (elevatorController.elevatorState == ElevatorState.AtTop || elevatorController.elevatorState == ElevatorState.AtBottom)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = buttonNotPressed;
             IsHittable = true;
@@ -35,6 +38,7 @@ public class MainElevatorSwitch : MonoBehaviour
         if (collision.gameObject.tag == "Player" && IsHittable)
         {
             elevator.GetComponent<MainElevatorController>().MoveToTarget();
+            gameObject.GetComponent<SpriteRenderer>().sprite = buttonPressed;
         }
     }
 

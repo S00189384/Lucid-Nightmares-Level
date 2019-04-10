@@ -14,32 +14,31 @@ public class MainElevatorController : MonoBehaviour
     public ElevatorState elevatorState;
     ElevatorState previousElevatorState;
     Rigidbody2D body;
-    public float moveSpeed = 4;
+    public float moveSpeed = 10;
     public Transform topPosition;
     public Transform bottomPosition;
-    public Vector2 targetPosition;
+    Transform targetPosition;
+    public bool CanMove = false;
 
 	// Use this for initialization
 	void Start ()
     {
         body = GetComponent<Rigidbody2D>();
-        transform.position = topPosition.position;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        /*transform.position == topPosition.position*/
-        if (transform.position == topPosition.position)
+        if (elevatorState == ElevatorState.AtTop && Vector2.Distance(transform.position, topPosition.position) <= 2)
         {
             SetState(ElevatorState.AtTop);
-            targetPosition = bottomPosition.position;
+            targetPosition = bottomPosition;
         }
 
-        else if (transform.position == bottomPosition.position)
+        else if (elevatorState == ElevatorState.AtBottom && Vector2.Distance(transform.position, bottomPosition.position) <= 2)
         {
             SetState(ElevatorState.AtBottom);
-            targetPosition = topPosition.position;
+            targetPosition = topPosition;
             Debug.Log("inposition");
         }
 
@@ -53,9 +52,11 @@ public class MainElevatorController : MonoBehaviour
 
     public void MoveToTarget()
     {
-        body.velocity = new Vector2((targetPosition.x - transform.position.x), (targetPosition.y - transform.position.y)) * moveSpeed;
+        if (CanMove)
+            body.velocity = (targetPosition.position - transform.position).normalized * moveSpeed;
         //body.MovePosition(Vector2.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime));
     }
+
 
     public void SetState(ElevatorState newState)
     {
@@ -64,5 +65,25 @@ public class MainElevatorController : MonoBehaviour
             previousElevatorState = elevatorState;
             elevatorState = newState;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "TopElevator")
+        {
+            Debug.Log("AtTop");
+            targetPosition = bottomPosition;
+            SetState(ElevatorState.AtTop);
+        }
+
+        else if(collision.gameObject.tag == "BottomElevator")
+        {
+            targetPosition = topPosition;
+            SetState(ElevatorState.AtBottom);
+            CanMove = false;
+        }
+
+
+
     }
 }

@@ -12,6 +12,9 @@ TagManager:
   - ElevatorSwitch
   - MovingPlatform
   - Mace
+  - FireSkull
+  - TopElevator
+  - BottomElevator
   layers:
   - Default
   - TransparentFX
