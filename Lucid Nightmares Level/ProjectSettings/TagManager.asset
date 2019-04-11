@@ -17,6 +17,8 @@ TagManager:
   - BottomElevator
   - Checkpoint
   - FillerTile
+  - SawBlade
+  - LightSource
   layers:
   - Default
   - TransparentFX

@@ -66,7 +66,4 @@ public class FollowPath : MonoBehaviour
 
         body.angularVelocity = 0;
     }
-
-
-
 }

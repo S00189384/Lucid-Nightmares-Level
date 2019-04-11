@@ -10,12 +10,14 @@ public class PlayerMovement : CharacterMovement
     Vector2 customVelocity;
     SpriteRenderer sprite;
     PlayerAnimationController playerAnimation;
+    PlayerData playerData;
     public bool IsAttacking = false;
     public bool isOnPlatform = false;
     public int FacingDirection = 1;
 
     void Start()
     {
+        playerData = GetComponent<PlayerData>();
         body = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         playerAnimation = GetComponent<PlayerAnimationController>();

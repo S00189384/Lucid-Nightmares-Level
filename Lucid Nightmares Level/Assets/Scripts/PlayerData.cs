@@ -12,6 +12,9 @@ public class PlayerData : MonoBehaviour
     public float currentHealth;
     public float maxStamina = 100;
     public float currentStamina;
+    public float maxSpecial = 100;
+    public float currentSpecial;
+    public float specialDrain = 80;
 
     public Vector3 checkpointPosition;
 
@@ -19,15 +22,21 @@ public class PlayerData : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        currentStamina = maxStamina;
+        ResetStats();
         checkpointPosition = transform.position;
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     private void Update()
     {
- 
+        if (currentSpecial < maxSpecial)
+        {
+            if(currentSpecial < 0)
+            {
+                currentSpecial = 0;
+            }
+            currentSpecial += 0.1f;
+        }
     }
 
 
@@ -74,7 +83,20 @@ public class PlayerData : MonoBehaviour
             checkpointPosition = hitObject.transform.position;
         }
 
+        if(hitObject.tag == "SawBlade")
+        {
+            damageInflicted = hitObject.GetComponent<SawBladeController>().damage;
+            gameController.DeductHealth(damageInflicted);
+        }
+
     }
 
+    // Sets all stats to max values.
+    public void ResetStats()
+    {
+        currentHealth = maxHealth;
+        currentStamina = maxStamina;
+        currentSpecial = maxSpecial;
+    }
 
 }
