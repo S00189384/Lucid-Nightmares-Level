@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4840626099829722}
   - component: {fileID: 212840182605126760}
   - component: {fileID: 95109528044522032}
+  - component: {fileID: 108030286107802712}
   m_Layer: 0
   m_Name: Flame Spritesheet_0
   m_TagString: Untagged
@@ -50,14 +51,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1547337754789316}
-  m_LocalRotation: {x: -0, y: -0, z: -0.000104980296, w: 1}
-  m_LocalPosition: {x: -4.89, y: 2.39, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.39205757, w: 0.91994065}
+  m_LocalPosition: {x: 0.123, y: 2.42, z: 0}
   m_LocalScale: {x: 0.36882362, y: 0.36882362, z: 0.36882362}
   m_Children:
   - {fileID: 4840626099829722}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.012}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 46.165}
 --- !u!4 &4840626099829722
 Transform:
   m_ObjectHideFlags: 1
@@ -65,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191483090677498}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.328, y: 1.694, z: 0}
+  m_LocalPosition: {x: -0.328, y: 1.694, z: -1}
   m_LocalScale: {x: 0.67616934, y: 0.6761693, z: 0.6761693}
   m_Children: []
   m_Father: {fileID: 4423499716394956}
@@ -89,6 +90,42 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!108 &108030286107802712
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191483090677498}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 18
+  m_Range: 30.854515
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!212 &212840182605126760
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -33,7 +33,7 @@ public class PlayerData : MonoBehaviour
         {
             if(currentSpecial < 0)
             {
-                currentSpecial = 0;
+                currentSpecial = -20;
             }
             currentSpecial += 0.1f;
         }

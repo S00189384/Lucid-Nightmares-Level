@@ -31,11 +31,22 @@ public class PlayerAttack : MonoBehaviour
     {
         if(playerData.currentSpecial > 0)
         {
-            ProjectileDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            GameObject go = Instantiate(lightSource, transform.position, Quaternion.identity);
-            go.GetComponent<Rigidbody2D>().velocity = (ProjectileDirection).normalized * ProjectileForce;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = -1;
+            GameObject go = Instantiate(lightSource, transform.position, transform.rotation);
+            go.GetComponent<Rigidbody2D>().velocity = (mousePos).normalized * ProjectileForce;
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), go.GetComponent<Collider2D>());
             playerData.currentSpecial -= playerData.specialDrain;
+
+
+
+
+            //ProjectileDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            //GameObject go = Instantiate(lightSource, transform.position, Quaternion.identity);
+            ////go.position.z = -1;
+            //go.GetComponent<Rigidbody2D>().velocity = (ProjectileDirection).normalized * ProjectileForce;
+            //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), go.GetComponent<Collider2D>());
+            //playerData.currentSpecial -= playerData.specialDrain;
         }
 
     }
