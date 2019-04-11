@@ -43,7 +43,9 @@ public class PlayerData : MonoBehaviour
 
     public void HandleCollision(GameObject hitObject)
     {
-        if(hitObject.tag == "Trapdoor")
+        int damageInflicted;
+
+        if (hitObject.tag == "Trapdoor")
         {
             Destroy(hitObject);
         }
@@ -56,12 +58,14 @@ public class PlayerData : MonoBehaviour
 
         if(hitObject.tag == "Mace")
         {
-            gameController.DeductHealth(100);
+            damageInflicted = hitObject.GetComponent<MaceController>().damage;
+            gameController.DeductHealth(damageInflicted);
         }
 
         if(hitObject.tag == "FireSkull")
         {
-            gameController.DeductHealth(40);
+            damageInflicted = hitObject.GetComponent<FireSkullController>().damage;
+            gameController.DeductHealth(damageInflicted);
             Destroy(hitObject);
         }
 

@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class FireSkullController : MonoBehaviour
 {
+    public int damage = 30;
 
-	// Use this for initialization
-	void Start ()
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+        if (collision.gameObject.tag == "Jumpable" || collision.gameObject.tag == "FillerTile")
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

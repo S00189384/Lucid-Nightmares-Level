@@ -16,7 +16,8 @@ public class SecondGhostController : MonoBehaviour
     SecondGhostState previousGhostState;
     public GameObject player;
     public GameObject objectToShoot;
-    public float distanceToPlayerTolerance = 10;
+    public float distanceToShoot = 10;
+    public float dissapearDistance = 4;
     public float shootSpeed = 2;
     public float elapsedTime;
     public float shootTime = 2;
@@ -39,7 +40,7 @@ public class SecondGhostController : MonoBehaviour
     {
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        if(distanceToPlayer <= 16)
+        if(distanceToPlayer <= distanceToShoot)
         {
             elapsedTime += Time.deltaTime;
             if(elapsedTime >= shootTime)
@@ -49,7 +50,7 @@ public class SecondGhostController : MonoBehaviour
             }
         }
 
-        if(distanceToPlayer <= 4)
+        if(distanceToPlayer <= dissapearDistance)
         {
             SetState(SecondGhostState.Dissapearing);
         }

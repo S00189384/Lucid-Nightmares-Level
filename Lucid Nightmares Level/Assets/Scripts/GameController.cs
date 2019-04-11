@@ -37,8 +37,7 @@ public class GameController : MonoBehaviour
     public void TeleportToCheckpoint()
     {
         player.transform.position = playerData.checkpointPosition;
+        playerData.currentHealth = playerData.maxHealth;
     }
-
-
 
 }

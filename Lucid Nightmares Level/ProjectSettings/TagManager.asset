@@ -16,6 +16,7 @@ TagManager:
   - TopElevator
   - BottomElevator
   - Checkpoint
+  - FillerTile
   layers:
   - Default
   - TransparentFX

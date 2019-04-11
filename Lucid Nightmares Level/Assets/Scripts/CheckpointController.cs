@@ -11,8 +11,6 @@ public class CheckpointController : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
     }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
