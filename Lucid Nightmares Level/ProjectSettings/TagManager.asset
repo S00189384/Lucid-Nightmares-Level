@@ -19,8 +19,9 @@ TagManager:
   - FillerTile
   - SawBlade
   - LightSource
-  - SpawnPoint
   - Zombie
+  - EnemySpawnTrigger
+  - MimicChest
   layers:
   - Default
   - TransparentFX

@@ -11,8 +11,6 @@ public enum ZombieState
     Dead //4
 }
 
-
-
 public class ZombieController : MonoBehaviour
 {
     public ZombieState zombieState;
@@ -20,9 +18,10 @@ public class ZombieController : MonoBehaviour
     PlayerData playerData;
     Animator animator;
     SpriteRenderer sprite;
-    public GameObject player;
+    GameObject player;
     Rigidbody2D body;
     public bool IsGrounded;
+    public bool CanAttack = false;
     public int playerDirection;
     public float distanceToPlayer;
     public float currentHealth;
@@ -37,6 +36,7 @@ public class ZombieController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        player = GameObject.FindGameObjectWithTag("Player");
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
         currentHealth = maxHealth;
     }
@@ -87,7 +87,7 @@ public class ZombieController : MonoBehaviour
                 WalkToPlayer();
                 SetState(ZombieState.Walking);
             }
-            else if(distanceToPlayer < 4)
+            else if(distanceToPlayer < 4 && CanAttack == false)
             {
                 RunToPlayer();
             }
@@ -101,6 +101,11 @@ public class ZombieController : MonoBehaviour
         else
         {
             SetState(ZombieState.Idle);
+        }
+
+        if(CanAttack)
+        {
+            Attack();
         }
 
         if (currentHealth <= 0)
@@ -140,7 +145,7 @@ public class ZombieController : MonoBehaviour
 
     public void Attack()
     {
-
+        SetState(ZombieState.Attacking);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -149,12 +154,21 @@ public class ZombieController : MonoBehaviour
         {
             IsGrounded = true;
         }
+
+        if(collision.gameObject.tag == "Player")
+        {
+            CanAttack = true;
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Jumpable")
         {
             IsGrounded = false;
+        }
+        if (collision.gameObject.tag == "Player")
+        {
+            CanAttack = false;
         }
     }
 }

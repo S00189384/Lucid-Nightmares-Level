@@ -33,7 +33,6 @@ public class ChestController : MonoBehaviour
         {
             SetState(ChestState.Opening);
             SpawnKey();
-
         }
 
         animator.SetInteger("ChestState", (int)chestState);

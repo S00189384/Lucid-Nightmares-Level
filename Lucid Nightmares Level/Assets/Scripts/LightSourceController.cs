@@ -23,7 +23,11 @@ public class LightSourceController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject)
+        {
+            //Hits enemy, it stops but doesn't block enemy.
             body.velocity = Vector2.zero;
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+        }
     }
 
 }
