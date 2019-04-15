@@ -10,11 +10,12 @@ public class PlayerData : MonoBehaviour
 
     public float maxHealth = 100;
     public float currentHealth;
-    public float maxStamina = 100;
+    public float maxStamina = 40;
     public float currentStamina;
+    public float staminaRegen = 0.15f;
     public float maxSpecial = 100;
     public float currentSpecial;
-    public float specialDrain = 80;
+    public float specialRegen = 0.5f;
 
     public Vector3 checkpointPosition;
 
@@ -27,15 +28,18 @@ public class PlayerData : MonoBehaviour
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (currentSpecial < maxSpecial)
         {
-            if(currentSpecial < 0)
-            {
-                currentSpecial = -20;
-            }
-            currentSpecial += 0.1f;
+            currentSpecial += specialRegen;
+            if (currentSpecial > maxSpecial)
+                currentSpecial = maxSpecial;
+        }
+
+        if (currentStamina < maxStamina)
+        {
+            currentStamina += staminaRegen;
         }
     }
 
@@ -59,31 +63,31 @@ public class PlayerData : MonoBehaviour
             Destroy(hitObject);
         }
 
-        if(hitObject.tag == "Key3")
+        if (hitObject.tag == "Key3")
         {
             Destroy(hitObject);
             HasKey3 = true;
         }
 
-        if(hitObject.tag == "Mace")
+        if (hitObject.tag == "Mace")
         {
             damageInflicted = hitObject.GetComponent<MaceController>().damage;
             gameController.DeductHealth(damageInflicted);
         }
 
-        if(hitObject.tag == "FireSkull")
+        if (hitObject.tag == "FireSkull")
         {
             damageInflicted = hitObject.GetComponent<FireSkullController>().damage;
             gameController.DeductHealth(damageInflicted);
             Destroy(hitObject);
         }
 
-        if(hitObject.tag == "Checkpoint")
+        if (hitObject.tag == "Checkpoint")
         {
             checkpointPosition = hitObject.transform.position;
         }
 
-        if(hitObject.tag == "SawBlade")
+        if (hitObject.tag == "SawBlade")
         {
             damageInflicted = hitObject.GetComponent<SawBladeController>().damage;
             gameController.DeductHealth(damageInflicted);
@@ -98,5 +102,7 @@ public class PlayerData : MonoBehaviour
         currentStamina = maxStamina;
         currentSpecial = maxSpecial;
     }
+
+
 
 }

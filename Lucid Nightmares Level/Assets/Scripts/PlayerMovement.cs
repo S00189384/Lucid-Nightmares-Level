@@ -32,14 +32,14 @@ public class PlayerMovement : CharacterMovement
         customVelocity.y = body.velocity.y;
         body.velocity = customVelocity;
 
-        if(isOnPlatform)
+        if (isOnPlatform)
         {
             body.velocity += platformRigidBody.velocity;
         }
 
 
         // Code so sprite faces correct position.
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             FacingDirection = -1;
         }
@@ -54,7 +54,7 @@ public class PlayerMovement : CharacterMovement
             sprite.flipX = true;
         }
 
-        else if(FacingDirection == 1)
+        else if (FacingDirection == 1)
         {
             sprite.flipX = false;
         }
@@ -72,42 +72,45 @@ public class PlayerMovement : CharacterMovement
             Jump();
 
             if (body.velocity.y > 0.5 || body.velocity.y < -0.5)
-                playerAnimation.SetState(PlayerMovementState.Somersault);
+                IsAttacking = false;
+            playerAnimation.SetState(PlayerMovementState.Somersault);
         }
-        else if (Input.GetKey(KeyCode.A) && isOnJumpingSurface || Input.GetKey(KeyCode.D) && isOnJumpingSurface)
+        else if (Input.GetKey(KeyCode.A) && isOnJumpingSurface && IsAttacking == false || Input.GetKey(KeyCode.D) && isOnJumpingSurface && IsAttacking == false)
         {
             playerAnimation.SetState(PlayerMovementState.Jogging);
         }
 
-        if (Input.GetKey(KeyCode.E) && isOnJumpingSurface)
+        else if (Input.GetKey(KeyCode.E) && isOnJumpingSurface && playerData.currentStamina > 0)
         {
             Dash(horizontal);
             playerAnimation.SetState(PlayerMovementState.Dash);
         }
 
-        if (Input.GetMouseButtonDown(0) && isOnJumpingSurface)
+        if (Input.GetMouseButtonDown(0) && isOnJumpingSurface && playerData.currentStamina > 0)
         {
             playerAnimation.SetState(PlayerMovementState.Attack1);
             IsAttacking = true;
         }
 
-        if (Input.GetMouseButtonDown(1) && isOnJumpingSurface)
+        if (Input.GetMouseButtonDown(1) && isOnJumpingSurface && playerData.currentStamina > 0)
         {
             playerAnimation.SetState(PlayerMovementState.Attack2);
             IsAttacking = true;
         }
 
-        if (Input.GetMouseButtonDown(2) && isOnJumpingSurface)
+        if (Input.GetMouseButtonDown(2) && isOnJumpingSurface && playerData.currentStamina > 0)
         {
             playerAnimation.SetState(PlayerMovementState.Attack3);
             IsAttacking = true;
         }
 
-        if(Input.GetKey(KeyCode.Space) && isOnJumpingSurface)
+        if (Input.GetKey(KeyCode.Space) && isOnJumpingSurface && IsAttacking == false && playerData.currentSpecial > 0)
         {
+
             playerAnimation.SetState(PlayerMovementState.SpecialAbility);
-            IsAttacking = true;
+
         }
+
     }
 
     public void EndAttack()
@@ -117,7 +120,7 @@ public class PlayerMovement : CharacterMovement
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "MovingPlatform")
+        if (collision.gameObject.tag == "MovingPlatform")
         {
             currentPlatform = collision.gameObject;
             isOnPlatform = true;

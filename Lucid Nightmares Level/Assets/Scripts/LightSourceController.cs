@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class LightSourceController : MonoBehaviour
 {
-    Vector3 position;
+    Rigidbody2D body;
+    public float elapsedTime;
+    public float destroyTime = 7;
 
-	void Update ()
+    private void Start()
     {
-        //When spawning in the Light Source, camera to world point was putting the objects z position to be 0. 
-        //This script sets the z position to -1 so that the light is visible.
-        position.z = -1;
-        position.x = transform.position.x;
-        position.y = transform.position.y;
-        transform.position = position;
+        body = GetComponent<Rigidbody2D>();
+    }
+
+    void Update ()
+    {
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= destroyTime)
+            Destroy(gameObject);
 	}
-	
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject)
+            body.velocity = Vector2.zero;
+    }
+
 }
