@@ -24,7 +24,9 @@ TagManager:
   - MimicChest
   - SpawnPoint
   - DeathDoor
-  - PlayerHitbox
+  - Wraith
+  - ZombieDetector
+  - PlayerHitBox
   layers:
   - Default
   - TransparentFX

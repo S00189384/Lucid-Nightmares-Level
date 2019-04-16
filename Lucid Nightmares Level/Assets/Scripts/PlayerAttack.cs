@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public BoxCollider2D hitBox;
+    public Transform leftHitBoxPosition;
+    public Transform rightHitBoxPosition;
     PlayerData playerData;
-    PlayerMovement playerMovement;
     PlayerAnimationController playerAnimation;
     public GameObject lightSource;
     public float ProjectileForce = 5;
     Vector2 ProjectileDirection;
 
+    //Stamina Drain.
     public float specialDrain = 80;
     public float Attack1Drain = 15;
     public float Attack2Drain = 30;
@@ -21,7 +24,6 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         playerData = GetComponent<PlayerData>();
-        playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimationController>();
     }
 
@@ -53,15 +55,19 @@ public class PlayerAttack : MonoBehaviour
     public void Attack1()
     {
         playerData.currentStamina -= Attack1Drain;
+        hitBox.enabled = true;
     }
+
     public void Attack2()
     {
         playerData.currentStamina -= Attack2Drain;
+        hitBox.enabled = true;
     }
+
     public void Attack3()
     {
         playerData.currentStamina -= Attack3Drain;
+        hitBox.enabled = true;
     }
-
 
 }

@@ -8,11 +8,9 @@ public enum MimicChestState
     Open, // 1
 }
 
-
 public class MimicChestController : MonoBehaviour
 {
     public MimicChestState mimicChestState;
-    MimicChestState previousMimicChestState;
     Animator animator;
     public GameObject objectToSpawn;
     GameObject player;
@@ -46,6 +44,6 @@ public class MimicChestController : MonoBehaviour
     // Method is called at end of animation.
     public void SpawnObject()
     {
-        GameObject go = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+        Instantiate(objectToSpawn, transform.position, Quaternion.identity);
     }
 }

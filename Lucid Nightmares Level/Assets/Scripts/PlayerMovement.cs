@@ -11,6 +11,7 @@ public class PlayerMovement : CharacterMovement
     SpriteRenderer sprite;
     PlayerAnimationController playerAnimation;
     PlayerData playerData;
+    PlayerAttack playerAttack;
     public bool IsAttacking = false;
     public bool isOnPlatform = false;
     public int FacingDirection = 1;
@@ -21,6 +22,7 @@ public class PlayerMovement : CharacterMovement
         body = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         playerAnimation = GetComponent<PlayerAnimationController>();
+        playerAttack = GetComponent<PlayerAttack>();
     }
 
     void Update()
@@ -38,7 +40,7 @@ public class PlayerMovement : CharacterMovement
         }
 
 
-        // Code so sprite faces correct position.
+        // Code so sprite  and hitbox faces correct position.
         if (Input.GetKey(KeyCode.A))
         {
             FacingDirection = -1;
@@ -51,11 +53,13 @@ public class PlayerMovement : CharacterMovement
 
         if (FacingDirection == -1)
         {
+            playerAttack.hitBox.transform.position = playerAttack.leftHitBoxPosition.transform.position;
             sprite.flipX = true;
         }
 
         else if (FacingDirection == 1)
         {
+            playerAttack.hitBox.transform.position = playerAttack.rightHitBoxPosition.transform.position;
             sprite.flipX = false;
         }
 
@@ -116,6 +120,7 @@ public class PlayerMovement : CharacterMovement
     public void EndAttack()
     {
         IsAttacking = false;
+        playerAttack.hitBox.enabled = false;
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)

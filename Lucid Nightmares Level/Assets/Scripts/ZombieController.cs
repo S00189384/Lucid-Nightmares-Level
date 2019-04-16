@@ -57,29 +57,7 @@ public class ZombieController : MonoBehaviour
 
 
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        //if(distanceToPlayer <= 7 && IsGrounded)
-        //{
-        //    WalkToPlayer();
-        //    if(distanceToPlayer <= 4 && IsGrounded)
-        //    {
-        //        RunToPlayer();
-        //    }
-        //}
-        //else
-        //{
-        //    body.velocity = Vector2.zero;
-        //    SetState(ZombieState.Idle);
-        //}
-        //if (currentHealth <= 0)
-        //{
-        //    body.velocity = Vector2.zero;
-        //    SetState(ZombieState.Dead);
-        //}
-
-        //if(Input.GetKey(KeyCode.H))
-        //{
-        //    currentHealth = 0;
-        //}
+  
         if(IsGrounded)
         {
             if(distanceToPlayer <= 7 && distanceToPlayer >= 4)
@@ -148,6 +126,7 @@ public class ZombieController : MonoBehaviour
     {
         SetState(ZombieState.Attacking);
     }
+
     //So it can be called at end of death animation.
     public void DestroyObject()
     {

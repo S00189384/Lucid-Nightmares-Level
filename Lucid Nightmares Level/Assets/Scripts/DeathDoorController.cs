@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeathDoorController : MonoBehaviour
 {
+    ZombieDetector zombieDetector;
     PlayerData playerData;
     Rigidbody2D body;
     public Transform upPosition;
@@ -12,6 +13,7 @@ public class DeathDoorController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        zombieDetector = GameObject.FindGameObjectWithTag("ZombieDetector").GetComponent<ZombieDetector>();
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
         body = GetComponent<Rigidbody2D>();
 	}
@@ -19,11 +21,12 @@ public class DeathDoorController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(playerData.killCount >= 2)
+        if (zombieDetector.ZombiesInArea != true)
         {
             body.velocity = new Vector2(0, 1) * moveSpeed;
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,5 +34,6 @@ public class DeathDoorController : MonoBehaviour
         {
             moveSpeed = 0;
         }
+
     }
 }
