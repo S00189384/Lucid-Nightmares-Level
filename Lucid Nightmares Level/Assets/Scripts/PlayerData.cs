@@ -8,6 +8,8 @@ public class PlayerData : MonoBehaviour
     public bool HasKey2 = false;
     public bool HasKey3 = false;
 
+    public int killCount = 0;
+
     public float maxHealth = 100;
     public float currentHealth;
     public float maxStamina = 40;

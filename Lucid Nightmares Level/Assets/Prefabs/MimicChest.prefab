@@ -9,86 +9,49 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1996937055067944}
+  m_RootGameObject: {fileID: 1266775907168778}
   m_IsPrefabParent: 1
---- !u!1 &1996937055067944
+--- !u!1 &1266775907168778
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4018245137750352}
-  - component: {fileID: 212715255445438206}
-  - component: {fileID: 50619982775982648}
-  - component: {fileID: 70738802662587730}
-  - component: {fileID: 114100568164753956}
-  - component: {fileID: 95172387103849094}
+  - component: {fileID: 4151549233227622}
+  - component: {fileID: 212441086688432750}
+  - component: {fileID: 95853652104664624}
+  - component: {fileID: 114389700700953046}
   m_Layer: 0
-  m_Name: Zombie
-  m_TagString: Zombie
+  m_Name: MimicChest
+  m_TagString: MimicChest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4018245137750352
+--- !u!4 &4151549233227622
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996937055067944}
+  m_GameObject: {fileID: 1266775907168778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2908945, y: -16.279757, z: 0}
+  m_LocalPosition: {x: -3.48, y: -16.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50619982775982648
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996937055067944}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1.2
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!70 &70738802662587730
-CapsuleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996937055067944}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.79285717, y: 1.3285714}
-  m_Direction: 0
---- !u!95 &95172387103849094
+--- !u!95 &95853652104664624
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996937055067944}
+  m_GameObject: {fileID: 1266775907168778}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d9b6593a57956f74fb245852eced6c0b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7945daadf2a6e8040a289cdb4b8c1666, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -97,33 +60,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114100568164753956
+--- !u!114 &114389700700953046
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996937055067944}
+  m_GameObject: {fileID: 1266775907168778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e2030fab1491b4d81d8ea19f148d80, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c7875897329c174190f81695f141e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieState: 0
-  IsGrounded: 0
-  CanAttack: 0
-  playerDirection: 0
+  mimicChestState: 0
+  objectToSpawn: {fileID: 1996937055067944, guid: e9a15cb804e70ee43b19f2ff4e374f2c,
+    type: 2}
   distanceToPlayer: 0
-  currentHealth: 0
-  maxHealth: 50
-  walkSpeed: 0.3
-  runSpeed: 2
-  damage: 5
---- !u!212 &212715255445438206
+  distanceToOpen: 3
+  SpawnedObject: 0
+--- !u!212 &212441086688432750
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996937055067944}
+  m_GameObject: {fileID: 1266775907168778}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -152,13 +111,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4a802b1b1cfff8d49b19ff57763697cf, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 6be39ea58b000244abe4d070ea3fd063, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.79285717, y: 1.3285714}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

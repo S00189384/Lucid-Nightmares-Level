@@ -17,10 +17,9 @@ public class MimicChestController : MonoBehaviour
     public GameObject objectToSpawn;
     GameObject player;
     Rigidbody2D body;
-    public Vector2 distanceToPlayer;
+    public float distanceToPlayer;
     public float distanceToOpen = 3;
     public bool SpawnedObject;
-
 
     // Use this for initialization
     void Start ()
@@ -35,19 +34,18 @@ public class MimicChestController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(Vector2.Distance(transform.position, player.transform.position) < distanceToOpen && SpawnedObject == false)
+        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        if(distanceToPlayer < distanceToOpen)
         {
-            SpawnObject();
             mimicChestState = MimicChestState.Open;
         }
 
         animator.SetInteger("MimicChestState", (int)mimicChestState);
 	}
 
+    // Method is called at end of animation.
     public void SpawnObject()
     {
         GameObject go = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
-        go.GetComponent<Rigidbody2D>().velocity = new Vector2(20, 25);
-        SpawnedObject = true;
     }
 }

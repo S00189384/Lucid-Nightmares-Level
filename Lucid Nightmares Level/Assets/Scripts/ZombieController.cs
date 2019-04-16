@@ -110,6 +110,7 @@ public class ZombieController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            playerData.killCount++;
             body.velocity = Vector2.zero;
             SetState(ZombieState.Dead);
         }
@@ -146,6 +147,11 @@ public class ZombieController : MonoBehaviour
     public void Attack()
     {
         SetState(ZombieState.Attacking);
+    }
+    //So it can be called at end of death animation.
+    public void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -22,6 +22,9 @@ TagManager:
   - Zombie
   - EnemySpawnTrigger
   - MimicChest
+  - SpawnPoint
+  - DeathDoor
+  - PlayerHitbox
   layers:
   - Default
   - TransparentFX
