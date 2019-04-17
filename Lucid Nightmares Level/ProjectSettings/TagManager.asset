@@ -22,11 +22,12 @@ TagManager:
   - Zombie
   - EnemySpawnTrigger
   - MimicChest
-  - SpawnPoint
   - DeathDoor
   - Wraith
   - ZombieDetector
   - PlayerHitBox
+  - Spawn
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
