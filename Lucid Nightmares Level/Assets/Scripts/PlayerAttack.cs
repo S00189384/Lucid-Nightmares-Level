@@ -16,8 +16,12 @@ public class PlayerAttack : MonoBehaviour
     //Stamina Drain.
     public float specialDrain = 80;
     public float Attack1Drain = 15;
+    public float Attack1Damage = 5;
     public float Attack2Drain = 30;
+    public float Attack2Damage = 10;
     public float Attack3Drain = 35;
+    public float Attack3Damage = 15;
+    public float DamageInflicted;
 
 
     // Use this for initialization
@@ -54,18 +58,21 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack1()
     {
+        DamageInflicted = Attack1Damage;
         playerData.currentStamina -= Attack1Drain;
         hitBox.enabled = true;
     }
 
     public void Attack2()
     {
+        DamageInflicted = Attack2Damage;
         playerData.currentStamina -= Attack2Drain;
         hitBox.enabled = true;
     }
 
     public void Attack3()
     {
+        DamageInflicted = Attack3Damage;
         playerData.currentStamina -= Attack3Drain;
         hitBox.enabled = true;
     }

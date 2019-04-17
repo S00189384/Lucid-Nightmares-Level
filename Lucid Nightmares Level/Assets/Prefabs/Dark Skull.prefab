@@ -39,10 +39,10 @@ GameObject:
   - component: {fileID: 95098891182895110}
   - component: {fileID: 50809878143732640}
   - component: {fileID: 58884688623777630}
-  - component: {fileID: 114083555474866626}
+  - component: {fileID: 114647474010463192}
   m_Layer: 0
   m_Name: Dark Skull
-  m_TagString: FireSkull
+  m_TagString: DarkSkull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,7 +163,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114083555474866626
+--- !u!114 &114647474010463192
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -171,10 +171,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1447748890980834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f954d5a55645242bec2bdad28872d5, type: 3}
+  m_Script: {fileID: 11500000, guid: d2176c0a5f871364f9bffbf8787727fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 50
 --- !u!212 &212587909854363008
 SpriteRenderer:
   m_ObjectHideFlags: 1

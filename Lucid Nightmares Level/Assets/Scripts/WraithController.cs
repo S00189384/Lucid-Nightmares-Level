@@ -82,6 +82,7 @@ public class WraithController : MonoBehaviour
     {
         GameObject go = Instantiate(objectToShoot, transform.position, Quaternion.identity);
         go.GetComponent<Rigidbody2D>().velocity = (player.transform.position - transform.position).normalized * objectSpeed;
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), go.GetComponent<Collider2D>());
     }
 
     public void PickRandomStartPosition()

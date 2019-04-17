@@ -9,8 +9,6 @@ public class PlayerData : MonoBehaviour
     public bool HasKey2 = false;
     public bool HasKey3 = false;
 
-    public int killCount = 0;
-
     public float maxHealth = 100;
     public float currentHealth;
     public float maxStamina = 40;
@@ -85,6 +83,13 @@ public class PlayerData : MonoBehaviour
             Destroy(hitObject);
         }
 
+        if (hitObject.tag == "DarkSkull")
+        {
+            damageInflicted = hitObject.GetComponent<DarkSkullController>().damage;
+            gameController.DeductHealth(damageInflicted);
+            Destroy(hitObject);
+        }
+
         if (hitObject.tag == "Checkpoint")
         {
             checkpointPosition = hitObject.transform.position;
@@ -93,6 +98,12 @@ public class PlayerData : MonoBehaviour
         if (hitObject.tag == "SawBlade")
         {
             damageInflicted = hitObject.GetComponent<SawBladeController>().damage;
+            gameController.DeductHealth(damageInflicted);
+        }
+
+        if(hitObject.tag == "ZombieHitBox")
+        {
+            damageInflicted =  GameObject.FindGameObjectWithTag("Zombie").GetComponent<ZombieController>().damage;
             gameController.DeductHealth(damageInflicted);
         }
 
@@ -105,7 +116,5 @@ public class PlayerData : MonoBehaviour
         currentStamina = maxStamina;
         currentSpecial = maxSpecial;
     }
-
-
 
 }

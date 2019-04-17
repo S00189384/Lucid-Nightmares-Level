@@ -11,7 +11,6 @@ public class ZombieDetector : MonoBehaviour
         if (collision.gameObject.tag == "Zombie" || collision.gameObject.tag == "SpawnPoint")
         {
             ZombiesInArea = true;
-            Debug.Log("zombie");
         }
     }
 
@@ -22,21 +21,4 @@ public class ZombieDetector : MonoBehaviour
             ZombiesInArea = false;
         }
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Zombie" || collision.gameObject.tag == "SpawnPoint")
-    //    {
-    //        ZombiesInArea = true;
-    //        Debug.Log("zombie");
-    //    }
-    //}
-
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Zombie" || collision.gameObject.tag == "SpawnPoint")
-    //    {
-    //        ZombiesInArea = false;
-    //    }
-    //}
 }

@@ -13,22 +13,28 @@ public enum ZombieState
 
 public class ZombieController : MonoBehaviour
 {
+    public BoxCollider2D hitBox;
+    public Transform leftHitBoxPosition;
+    public Transform rightHitBoxPosition;
+
     public ZombieState zombieState;
     ZombieState previousZombieState;
+
     PlayerData playerData;
     Animator animator;
     SpriteRenderer sprite;
     GameObject player;
     Rigidbody2D body;
+
     public bool IsGrounded;
     public bool CanAttack = false;
-    public int playerDirection;
+    public int zombieDirection;
     public float distanceToPlayer;
     public float currentHealth;
     public float maxHealth = 50;
     public float walkSpeed = 0.2f;
     public float runSpeed = 4;
-    public float damage = 5;
+    public int damage = 5;
 
 	// Use this for initialization
 	void Start ()
@@ -46,14 +52,21 @@ public class ZombieController : MonoBehaviour
     {
         // So Zombie faces right direction.
         if (player.transform.position.x > transform.position.x && currentHealth > 0)
-            playerDirection = 1;
+            zombieDirection = 1;
         else
-            playerDirection = -1;
+            zombieDirection = -1;
 
-        if (playerDirection == -1)
+        if (zombieDirection == -1)
+        {
             sprite.flipX = true;
+            hitBox.transform.position = leftHitBoxPosition.transform.position;
+        }
+
         else
+        {
             sprite.flipX = false;
+            hitBox.transform.position = rightHitBoxPosition.transform.position;
+        }
 
 
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
@@ -88,7 +101,6 @@ public class ZombieController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            playerData.killCount++;
             body.velocity = Vector2.zero;
             SetState(ZombieState.Dead);
         }
@@ -113,18 +125,28 @@ public class ZombieController : MonoBehaviour
     public void WalkToPlayer()
     {
         SetState(ZombieState.Walking);
-        body.velocity = new Vector2(playerDirection, 0) * walkSpeed;
+        body.velocity = new Vector2(zombieDirection, 0) * walkSpeed;
     }
 
     public void RunToPlayer()
     {
         SetState(ZombieState.Running);
-        body.velocity = new Vector2(playerDirection, 0) * runSpeed;
+        body.velocity = new Vector2(zombieDirection, 0) * runSpeed;
     }
 
     public void Attack()
     {
         SetState(ZombieState.Attacking);
+    }
+
+    public void SetHitboxActive()
+    {
+        hitBox.enabled = true;
+    }
+
+    public void EndAttack()
+    {
+        hitBox.enabled = false;
     }
 
     //So it can be called at end of death animation.
@@ -143,8 +165,17 @@ public class ZombieController : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             CanAttack = true;
+        }    
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerHitBox")
+        {
+            Debug.Log("Hit by player");
+            currentHealth -= player.GetComponent<PlayerAttack>().DamageInflicted;
         }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Jumpable")

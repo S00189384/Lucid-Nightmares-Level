@@ -28,6 +28,8 @@ TagManager:
   - PlayerHitBox
   - Spawn
   - SpawnPoint
+  - DarkSkull
+  - ZombieHitBox
   layers:
   - Default
   - TransparentFX
