@@ -44,6 +44,7 @@ public class MimicChestController : MonoBehaviour
     // Method is called at end of animation.
     public void SpawnObject()
     {
-        Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+        GameObject go = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+        go.GetComponent<Rigidbody2D>().velocity = new Vector2(1.5f, 2);
     }
 }

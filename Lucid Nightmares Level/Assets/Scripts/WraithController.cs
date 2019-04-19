@@ -24,6 +24,8 @@ public class WraithController : MonoBehaviour
     GameObject player;
     public bool playerWithinRange = false;
     public bool MovingToPosition;
+    public float currentHealth;
+    public float maxHealth = 50;
     public float rangeToAttack = 8;
     public float moveSpeed = 3;
     public float moveTimer;
@@ -40,6 +42,7 @@ public class WraithController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         PickRandomStartPosition();
         wraithState = WraithState.RangedAttack;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -107,9 +110,17 @@ public class WraithController : MonoBehaviour
         wraithState = WraithState.Idle;
     }
 
-    //public Transform PickNextNodePosition()
-    //{
-    //    randomNumber = Random.Range(0, Nodes.Length);
-    //    return Nodes[randomNumber];
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerHitBox")
+        {
+            Debug.Log("Hit by player");
+            currentHealth -= player.GetComponent<PlayerAttack>().DamageInflicted;
+        }
+        if(collision.gameObject.tag == "LightSource")
+        {
+            currentHealth -= player.GetComponent<PlayerAttack>().DamageInflicted;
+        }
+    }
+
 }

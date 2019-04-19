@@ -107,6 +107,12 @@ public class PlayerData : MonoBehaviour
             gameController.DeductHealth(damageInflicted);
         }
 
+        if (hitObject.tag == "Health")
+        {
+            Destroy(hitObject);
+            currentHealth += 20;
+        }
+
     }
 
     // Sets all stats to max values.

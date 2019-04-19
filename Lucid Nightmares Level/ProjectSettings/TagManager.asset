@@ -30,6 +30,7 @@ TagManager:
   - SpawnPoint
   - DarkSkull
   - ZombieHitBox
+  - Health
   layers:
   - Default
   - TransparentFX
