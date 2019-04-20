@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ElevtaorSwitch : MonoBehaviour
 {
+    Light switchLight;
     public GameObject elevator;
     public bool IsHittable = true;
     public Sprite buttonNotPressed;
@@ -13,6 +14,7 @@ public class ElevtaorSwitch : MonoBehaviour
     void Start()
     {
         controller = elevator.GetComponent<ElevtaorController>();
+        switchLight = GameObject.FindGameObjectWithTag("ElevatorSwitchLight").GetComponent<Light>();
     }
 
     private void Update()
@@ -20,10 +22,12 @@ public class ElevtaorSwitch : MonoBehaviour
         if(IsHittable)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = buttonNotPressed;
+            switchLight.color = Color.green;
         }
         else
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = buttonPressed;
+            switchLight.color = Color.red;
         }
     }
 
