@@ -42,4 +42,14 @@ public class JumpTrigger : MonoBehaviour
         }
 		
 	}
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            player.GetComponent<Rigidbody2D>().velocity += jumpForce;
+        }
+    }
+
 }
