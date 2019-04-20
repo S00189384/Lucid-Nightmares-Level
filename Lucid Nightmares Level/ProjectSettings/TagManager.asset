@@ -31,6 +31,9 @@ TagManager:
   - DarkSkull
   - ZombieHitBox
   - Health
+  - ExplodingSkull
+  - MimicSkull
+  - InvisTiles
   layers:
   - Default
   - TransparentFX

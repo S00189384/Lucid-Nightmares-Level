@@ -6,6 +6,7 @@ public class FollowPath : MonoBehaviour
 {
     public NavigationPath path;
 
+    SpriteRenderer sprite;
     Vector2 currentTarget;
     Rigidbody2D body;
 
@@ -19,6 +20,7 @@ public class FollowPath : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         body = GetComponent<Rigidbody2D>();
 
         if (PickRandomStartNode)
@@ -54,6 +56,10 @@ public class FollowPath : MonoBehaviour
         if (Vector2.Distance(transform.position, currentTarget) <= distanceToNodeTolerance)
         {
             GetNextNodePosition();
+        }
+        else
+        {
+            sprite.flipX = false;
         }
     }
 
