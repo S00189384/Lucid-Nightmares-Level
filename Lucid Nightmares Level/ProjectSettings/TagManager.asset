@@ -35,6 +35,7 @@ TagManager:
   - MimicSkull
   - InvisTiles
   - ElevatorSwitchLight
+  - WoodenSpike
   layers:
   - Default
   - TransparentFX

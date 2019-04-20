@@ -112,6 +112,11 @@ public class PlayerData : MonoBehaviour
             Destroy(hitObject);
             currentHealth += 20;
         }
+        if(hitObject.tag == "WoodenSpike")
+        {
+            damageInflicted = 100;
+            gameController.DeductHealth(damageInflicted);
+        }
 
     }
 
