@@ -36,6 +36,7 @@ TagManager:
   - InvisTiles
   - ElevatorSwitchLight
   - WoodenSpike
+  - UI
   layers:
   - Default
   - TransparentFX

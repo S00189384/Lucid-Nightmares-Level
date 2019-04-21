@@ -21,12 +21,14 @@ public class PlayerData : MonoBehaviour
     public Vector3 checkpointPosition;
 
     GameController gameController;
+    CanvasDisplay canvasDisplay;
 
     private void Start()
     {
         ResetStats();
         checkpointPosition = transform.position;
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        canvasDisplay = GameObject.FindGameObjectWithTag("UI").GetComponent<CanvasDisplay>();
     }
 
     private void FixedUpdate()
@@ -66,8 +68,9 @@ public class PlayerData : MonoBehaviour
 
         if (hitObject.tag == "Key3")
         {
-            Destroy(hitObject);
             HasKey3 = true;
+            Destroy(hitObject);
+            canvasDisplay.DisplayKey();
         }
 
         if (hitObject.tag == "Mace")
