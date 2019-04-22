@@ -37,6 +37,9 @@ TagManager:
   - ElevatorSwitchLight
   - WoodenSpike
   - UI
+  - InvisRoomTrigger
+  - DarkBall
+  - GhostMovePlayer
   layers:
   - Default
   - TransparentFX
