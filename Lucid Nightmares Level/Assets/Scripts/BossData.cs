@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossData : MonoBehaviour
 {
+    BossAnimationController bossAnimation;
     PlayerData playerData;
     BossMovement bossMovement;
 
@@ -20,6 +21,7 @@ public class BossData : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        bossAnimation = GetComponent<BossAnimationController>();
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
         bossMovement = GetComponent<BossMovement>();
 
@@ -34,14 +36,14 @@ public class BossData : MonoBehaviour
         //Checking whether boss is awake or not.
         if(IsAwake == false)
         {
-            bossMovement.SetState(BossState.PlayingDead);
+            bossAnimation.SetState(BossState.PlayingDead);
         }
 
         //As soon as player is in boss room - boss wakes up.
         if(playerData.InBossRoom == true)
         {
             //Waking up animation plays. IsAwake set to true at end of animation. Then boss can move / attack.
-            bossMovement.SetState(BossState.WakingUp);
+            bossAnimation.SetState(BossState.WakingUp);
         }
 
         //Checking whether boss is Alive or not.

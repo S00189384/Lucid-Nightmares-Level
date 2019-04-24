@@ -2,38 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BossState
-{
-    Idle, //0
-    Attack1, //1
-    Attack2, //2
-    Dead, //3
-    Evade, //4
-    Walk, //5
-    Run, //6
-    Attack3, //7
-    WakingUp, //8
-    PlayingDead //9
-}
-
-
 public class BossMovement : MonoBehaviour
 {
-    //Animation stuff.
-    public BossState bossState;
-    public BossState previousBossState;
     //Teleport Stuff.
     public BoxCollider2D teleportPositions;
-    public float distanceToPlayerTolerance = 5;
+    public float teleportDistanceToPlayerTolerance = 5;
+    public bool StartTeleportProcess;
+    public float teleportTimer;
+    public float timeToTeleport = 3;
     //Other scripts.
+    BossAttack bossAttack;
+    BossAnimationController bossAnimation;
     BossData bossData;
     Rigidbody2D body;
     SpriteRenderer sprite;
     PlayerData playerData;
     Animator animator;
     GameObject player;
-    //Attack stuff.
-    public bool CanAttack = false;
     //Movement Stuff.
     public int bossDirection;
     public float distanceToPlayer;
@@ -46,12 +31,15 @@ public class BossMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        bossAttack = GetComponent<BossAttack>();
+        bossAnimation = GetComponent<BossAnimationController>();
         bossData = GetComponent<BossData>();
         body = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
+        StartTeleportProcess = false;
     }
 
     // Update is called once per frame
@@ -83,8 +71,19 @@ public class BossMovement : MonoBehaviour
 
                 //Continually getting the distance from boss to player.
                 distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+             
                 //Always moves to player. 
                 MoveToPlayer();
+
+                //Checks if boss is within range to start his teleport process (timer
+                if (StartTeleportProcess)
+                {
+                    teleportTimer += Time.deltaTime;
+                    if (teleportTimer >= timeToTeleport)
+                    {
+                        bossAnimation.SetState(BossState.Evade);
+                    }
+                }
 
                 //Testing
                 if (Input.GetKey(KeyCode.Alpha0))
@@ -115,20 +114,10 @@ public class BossMovement : MonoBehaviour
         //If boss is dead.
         else
         {
-            SetState(BossState.Dead);
+            bossAnimation.SetState(BossState.Dead);
             body.velocity = Vector2.zero;
         }
-        animator.SetInteger("BossState", (int)bossState);
 
-    }
-
-    public void SetState(BossState newState)
-    {
-        if (newState != bossState)
-        {
-            previousBossState = bossState;
-            bossState = newState;
-        }
     }
 
     public void MoveToPlayer()
@@ -136,40 +125,44 @@ public class BossMovement : MonoBehaviour
         //Far from Player.
         if (distanceToPlayer >= distanceToStartWalking)
         {
-            SetState(BossState.Run);
+            bossAnimation.SetState(BossState.Run);
             body.velocity = new Vector2(bossDirection, 0) * runSpeed;
         }
         //Closer to Player.
-        else if(distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
+        if(distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
         {
-            SetState(BossState.Walk);
+            bossAnimation.SetState(BossState.Walk);
             body.velocity = new Vector2(bossDirection, 0) * walkSpeed;
         }
         //Within range to attack, idle animation, stops moving & random attacks.
-        else if(distanceToPlayer < distanceToStartAttacking)
+        if(distanceToPlayer < distanceToStartAttacking)
         {
+            bossAttack.CanAttack = true;
+            StartTeleportProcess = true;
             body.velocity = Vector2.zero;
-            SetState(BossState.Idle);
+            bossAnimation.SetState(BossState.Idle);
+
             //Attack
         }
+        
     }
 
+    //Ensures the new teleport position is not too close to the player (more than distanceToPlayerTolerance).
+    //Teleports boss to a position that is more than distanceToPlayerTolerance away. 
     public void Teleport()
     {
-        //float minX = teleportPositions.bounds.min.x;
-        //float maxX = teleportPositions.bounds.max.x;
-        //float randomX = Random.Range(minX, maxX);
-        //Vector2 newPosition = new Vector2(randomX, transform.position.y);
-        while(Vector2.Distance(transform.position, GetRandomPosition()) > distanceToPlayerTolerance)
+        Vector2 newPosition = GetRandomPosition();     
+        while(Vector2.Distance(newPosition,player.transform.position) < teleportDistanceToPlayerTolerance)
         {
-            GetRandomPosition();
+            newPosition = GetRandomPosition();
         }
 
-
-            transform.position = GetRandomPosition();
-
+        transform.position = newPosition;
+        teleportTimer = 0;
+        StartTeleportProcess = false;
     }
 
+    //Returns random position within the teleport bounds.
     public Vector2 GetRandomPosition()
     {
         float minX = teleportPositions.bounds.min.x;
