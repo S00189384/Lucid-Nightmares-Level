@@ -41,6 +41,8 @@ TagManager:
   - DarkBall
   - GhostMovePlayer
   - Boss
+  - BossRain
+  - BossProjectile
   layers:
   - Default
   - TransparentFX

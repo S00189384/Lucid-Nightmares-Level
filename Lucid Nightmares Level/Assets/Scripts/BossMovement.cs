@@ -126,12 +126,14 @@ public class BossMovement : MonoBehaviour
         if (distanceToPlayer >= distanceToStartWalking)
         {
             bossAnimation.SetState(BossState.Run);
+            bossAttack.CanAttack = false;
             body.velocity = new Vector2(bossDirection, 0) * runSpeed;
         }
         //Closer to Player.
         if(distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
         {
             bossAnimation.SetState(BossState.Walk);
+            bossAttack.CanAttack = false;
             body.velocity = new Vector2(bossDirection, 0) * walkSpeed;
         }
         //Within range to attack, idle animation, stops moving & random attacks.

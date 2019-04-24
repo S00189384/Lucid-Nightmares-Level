@@ -489,7 +489,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 36636763}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 56.88, y: 54.85, z: 0}
+  m_LocalPosition: {x: 53.78, y: 50.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1046188144}
@@ -645,6 +645,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!1 &57137402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 57137403}
+  m_Layer: 0
+  m_Name: BossSkullSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &57137403
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 57137402}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.34, y: 2.36, z: 0.11688842}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1317999739}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &60417859
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1209,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130077710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 46.26, y: 49.41, z: 0}
+  m_LocalPosition: {x: 41.88, y: 59.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1046188144}
@@ -6532,7 +6560,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 50
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &597360109
 GameObject:
@@ -7160,6 +7188,8 @@ GameObject:
   m_Component:
   - component: {fileID: 673431803}
   - component: {fileID: 673431804}
+  - component: {fileID: 673431806}
+  - component: {fileID: 673431805}
   m_Layer: 0
   m_Name: RainBox
   m_TagString: Untagged
@@ -7174,11 +7204,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 673431802}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7099991, y: 3.4499989, z: -0.087890625}
+  m_LocalPosition: {x: 38.190002, y: -15.63, z: -0.087890625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1317999739}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &673431804
 BoxCollider2D:
@@ -7205,6 +7235,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.179981, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &673431805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 673431802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d8d5808b0e3ef41afcc092898cd402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rainBox: {fileID: 673431804}
+  rain: {fileID: 1796306900114940, guid: 12e0f088d7690f14e9ca90702507031f, type: 2}
+  rainSpeed: 2
+  rainTimer: 0
+  rainSpawnTime: 0.5
+--- !u!50 &673431806
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 673431802}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &674356290
 Prefab:
   m_ObjectHideFlags: 0
@@ -15143,10 +15209,10 @@ GameObject:
   - component: {fileID: 1317999740}
   - component: {fileID: 1317999737}
   - component: {fileID: 1317999741}
+  - component: {fileID: 1317999742}
   - component: {fileID: 1317999745}
   - component: {fileID: 1317999744}
   - component: {fileID: 1317999743}
-  - component: {fileID: 1317999742}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -15189,7 +15255,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d81a98890d5fd6d408825cae47e220c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15229,9 +15295,9 @@ Transform:
   m_LocalPosition: {x: 38.9, y: -19.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 673431803}
+  - {fileID: 57137403}
   m_Father: {fileID: 0}
-  m_RootOrder: 49
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1317999740
 CapsuleCollider2D:
@@ -15277,8 +15343,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7045193189c1eb48a2501b1ada8bf06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rainParticles: {fileID: 0}
   CanAttack: 0
+  randomAttack: 0
+  attackTimer: 0
+  timeToAttack: 3
+  spawnPosition: {fileID: 57137403}
+  explodingSkull: {fileID: 0}
+  RainAttackActive: 0
+  objectToShoot: {fileID: 1298879834374694, guid: f282c6a0e6ba94d41a978ca3a011cbab,
+    type: 2}
+  projectileSpeed: 2
 --- !u!114 &1317999743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15311,7 +15385,7 @@ MonoBehaviour:
   teleportDistanceToPlayerTolerance: 5
   StartTeleportProcess: 0
   teleportTimer: 0
-  timeToTeleport: 4.5
+  timeToTeleport: 7.5
   bossDirection: 0
   distanceToPlayer: 0
   distanceToStartAttacking: 5
