@@ -10,13 +10,14 @@ public class BossRoomTrapdoor : MonoBehaviour
     public float moveSpeed = 4;
     public Transform movePosition;
     public Sprite redEyedTrapdoor;
-
+    public Light redEyesLight;
 	// Use this for initialization
 	void Start ()
     {
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         body = GetComponent<Rigidbody2D>();
+        redEyesLight.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -25,7 +26,11 @@ public class BossRoomTrapdoor : MonoBehaviour
         if (playerData.InBossRoom)
         {
             body.MovePosition(Vector2.MoveTowards(transform.position, movePosition.transform.position, moveSpeed * Time.deltaTime));
-            spriteRenderer.sprite = redEyedTrapdoor;          
+            if(Vector2.Distance(transform.position,movePosition.transform.position) <= 0.05f)
+            {
+                spriteRenderer.sprite = redEyedTrapdoor;
+                redEyesLight.enabled = true;
+            }
         }          
 	}
 }

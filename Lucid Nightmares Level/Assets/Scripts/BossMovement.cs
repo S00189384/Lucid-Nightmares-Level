@@ -19,23 +19,27 @@ public enum BossState
 
 public class BossMovement : MonoBehaviour
 {
+    //Animation stuff.
     public BossState bossState;
-    BossState previousBossState;
-
+    public BossState previousBossState;
+    //Teleport Stuff.
+    public BoxCollider2D teleportPositions;
+    public float distanceToPlayerTolerance = 5;
+    //Other scripts.
     BossData bossData;
     Rigidbody2D body;
     SpriteRenderer sprite;
     PlayerData playerData;
     Animator animator;
     GameObject player;
-
+    //Attack stuff.
     public bool CanAttack = false;
+    //Movement Stuff.
     public int bossDirection;
     public float distanceToPlayer;
     public float distanceToStartAttacking = 3;
-    public float distanceToStartRunning = 6;
     public float runSpeed = 4;
-    public float distanceToStartWalking = 10;
+    public float distanceToStartWalking = 5;
     public float walkSpeed = 2f;
 
 
@@ -48,51 +52,49 @@ public class BossMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
-        //IsAwake = true;
-
     }
 
     // Update is called once per frame
     void Update()
     {
         //If boss is alive.
-        if(bossData.IsAlive)
+        if (bossData.IsAlive)
         {
             //If boss is awake - it can move and attack.
             if (bossData.IsAwake)
             {
                 //So Boss Faces & Moves in right direction.
                 if (player.transform.position.x > transform.position.x && bossData.currentHealth > 0)
+                {
                     bossDirection = 1;
+                }
                 else
+                {
                     bossDirection = -1;
-
+                }
                 if (bossDirection == -1)
                 {
                     sprite.flipX = true;
                 }
-
                 else
                 {
                     sprite.flipX = false;
                 }
 
-
-
+                //Continually getting the distance from boss to player.
                 distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+                //Always moves to player. 
+                MoveToPlayer();
 
-                if (bossData.currentHealth > 0)
-                {
-                    MoveToPlayer();
-                }
-                else if (bossData.currentHealth <= 0)
-                {
-                    SetState(BossState.Dead);
-                }
-
+                //Testing
                 if (Input.GetKey(KeyCode.Alpha0))
                 {
                     bossData.currentHealth = 0;
+                }
+
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    Teleport();
                 }
 
                 //if (Input.GetKey(KeyCode.Alpha1))
@@ -108,17 +110,16 @@ public class BossMovement : MonoBehaviour
                 //if (Input.GetKey(KeyCode.Alpha6))
                 //    bossState = BossState.Run;
             }
-
         }
 
+        //If boss is dead.
         else
         {
             SetState(BossState.Dead);
             body.velocity = Vector2.zero;
         }
-
-
         animator.SetInteger("BossState", (int)bossState);
+
     }
 
     public void SetState(BossState newState)
@@ -153,14 +154,27 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    //public void RunToPlayer()
-    //{
-    //    SetState(BossState.Run);
-    //    body.velocity = new Vector2(bossDirection, transform.position.y) * runSpeed;
-    //}
-    //public void WalkToPlayer()
-    //{
-    //    SetState(BossState.Walk);
-    //    body.velocity = new Vector2(bossDirection, transform.position.y) * walkSpeed;
-    //}
+    public void Teleport()
+    {
+        //float minX = teleportPositions.bounds.min.x;
+        //float maxX = teleportPositions.bounds.max.x;
+        //float randomX = Random.Range(minX, maxX);
+        //Vector2 newPosition = new Vector2(randomX, transform.position.y);
+        while(Vector2.Distance(transform.position, GetRandomPosition()) > distanceToPlayerTolerance)
+        {
+            GetRandomPosition();
+        }
+
+
+            transform.position = GetRandomPosition();
+
+    }
+
+    public Vector2 GetRandomPosition()
+    {
+        float minX = teleportPositions.bounds.min.x;
+        float maxX = teleportPositions.bounds.max.x;
+        float randomX = Random.Range(minX, maxX);
+        return new Vector2(randomX, transform.position.y);
+    }
 }
