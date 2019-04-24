@@ -8440,8 +8440,7 @@ MonoBehaviour:
   - {fileID: 1133778846}
   playerHoldPosition: {fileID: 225166386}
   HasPlayer: 0
-  PlayerInBossRoom: 0
-  moveSpeed: 3
+  moveSpeed: 15
   timer: 0
   timeToMove: 2
   targetNode: 0
@@ -9156,7 +9155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1047392605}
-  BossActive: 0
 --- !u!4 &890929292
 Transform:
   m_ObjectHideFlags: 0
@@ -14102,11 +14100,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4929318024101864, guid: 3e33dff61abab56449cae110ce8366f0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 42.17
+      value: 63.46
       objectReference: {fileID: 0}
     - target: {fileID: 4929318024101864, guid: 3e33dff61abab56449cae110ce8366f0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -19.86
+      value: -33.32
       objectReference: {fileID: 0}
     - target: {fileID: 4929318024101864, guid: 3e33dff61abab56449cae110ce8366f0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -14971,6 +14969,8 @@ GameObject:
   - component: {fileID: 1317999737}
   - component: {fileID: 1317999741}
   - component: {fileID: 1317999742}
+  - component: {fileID: 1317999744}
+  - component: {fileID: 1317999743}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -14985,7 +14985,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1317999736}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -15033,7 +15033,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0416bcd26bbbf564396b2a303ac8e426, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d555235dc1825f4989919b6d0e108c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15050,7 +15050,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1317999736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.19, y: -19.56, z: 0}
+  m_LocalPosition: {x: 36.62, y: -19.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15101,7 +15101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossState: 0
-  IsAwake: 0
   CanAttack: 0
   bossDirection: 0
   distanceToPlayer: 0
@@ -15110,6 +15109,32 @@ MonoBehaviour:
   runSpeed: 4
   distanceToStartWalking: 8
   walkSpeed: 2
+--- !u!114 &1317999743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1317999736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7045193189c1eb48a2501b1ada8bf06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1317999744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1317999736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b08e776867668c408c84d6c07697554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAwake: 0
+  IsAlive: 0
+  destroyTimer: 0
+  timeToDestroyBoss: 6
   currentHealth: 0
   maxHealth: 300
 --- !u!1 &1322790078

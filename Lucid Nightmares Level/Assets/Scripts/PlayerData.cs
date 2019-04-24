@@ -9,6 +9,8 @@ public class PlayerData : MonoBehaviour
     public bool HasKey2 = false;
     public bool HasKey3 = false;
 
+    public bool InBossRoom = false;
+
     public float maxHealth = 100;
     public float currentHealth;
     public float maxStamina = 40;

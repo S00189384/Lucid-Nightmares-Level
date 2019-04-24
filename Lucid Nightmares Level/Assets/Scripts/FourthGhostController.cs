@@ -14,15 +14,15 @@ public class FourthGhostController : MonoBehaviour
     public Transform[] ghostNodes;
     public int NodeCount { get { return ghostNodes.Length; } }
 
-    GameController gameController;
+    PlayerData playerData;
+    BossMovement bossMovement;
     Rigidbody2D body;
     Animator animator;
     GameObject player;
 
     FourthGhostState fourthGhostState;
     public Transform playerHoldPosition;
-    public bool HasPlayer = false;
-    public bool PlayerInBossRoom = false;
+    public bool HasPlayer;
     public float moveSpeed = 3;
     public float timer;
     public float timeToMove = 2;
@@ -35,7 +35,9 @@ public class FourthGhostController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        bossMovement = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossMovement>();
+
+        HasPlayer = false;
 	}
 	
 	// Update is called once per frame
@@ -43,6 +45,7 @@ public class FourthGhostController : MonoBehaviour
     {
         if(HasPlayer)
         {
+            playerData = player.GetComponent<PlayerData>();
             player.GetComponent<PlayerAnimationController>().SetState(PlayerMovementState.Idle);
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             player.transform.position = playerHoldPosition.transform.position;
@@ -77,9 +80,8 @@ public class FourthGhostController : MonoBehaviour
         //If ghost reaches last node, drop player & dissapear.
         if(Vector2.Distance(transform.position, ghostNodes[ghostNodes.Length - 1].transform.position) <= 0.5f)
         {
-            gameController.BossActive = true;
             HasPlayer = false;
-            PlayerInBossRoom = true;
+            playerData.InBossRoom = true;
 
             fourthGhostState = FourthGhostState.Dissapearing;
         }

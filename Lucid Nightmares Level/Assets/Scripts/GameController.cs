@@ -8,7 +8,6 @@ public class GameController : MonoBehaviour
 {
     PlayerData playerData;
     public GameObject player;
-    public bool BossActive = false;
 
 	// Use this for initialization
 	void Start ()
