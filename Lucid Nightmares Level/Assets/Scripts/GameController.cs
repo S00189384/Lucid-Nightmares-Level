@@ -9,8 +9,10 @@ public class GameController : MonoBehaviour
     PlayerData playerData;
     public GameObject player;
 
-	// Use this for initialization
-	void Start ()
+    public bool BossFightActive = false;
+
+    // Use this for initialization
+    void Start ()
     {
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
 	}
@@ -29,11 +31,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void DeductHealth(int damage)
-    {
-        playerData.currentHealth -= damage;
-        CheckIfGameOver();
-    }
+    //public void DeductHealth(int damage)
+    //{
+    //    playerData.currentHealth -= damage;
+    //    CheckIfGameOver();
+    //}
 
     public void TeleportToCheckpoint()
     {

@@ -16,8 +16,6 @@ public class BossMovement : MonoBehaviour
     BossData bossData;
     Rigidbody2D body;
     SpriteRenderer sprite;
-    PlayerData playerData;
-    Animator animator;
     GameObject player;
     //Movement Stuff.
     public bool PlayerInRange;
@@ -36,9 +34,7 @@ public class BossMovement : MonoBehaviour
         bossData = GetComponent<BossData>();
         body = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
         StartTeleportProcess = false;
     }
 

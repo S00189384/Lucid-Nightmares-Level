@@ -9,8 +9,6 @@ public class PlayerData : MonoBehaviour
     public bool HasKey2 = false;
     public bool HasKey3 = false;
 
-    public bool BossFightActive = false;
-
     public float maxHealth = 100;
     public float currentHealth;
     public float maxStamina = 40;
@@ -50,12 +48,18 @@ public class PlayerData : MonoBehaviour
         }
 
         //For boss fight, player can't shoot light source.
-        if (BossFightActive)
+        if (gameController.BossFightActive)
         {
             currentSpecial = 0;
         }
-        else if (BossFightActive == false && bossData.IsAlive == false)
+        else if (gameController.BossFightActive == false && bossData.IsAlive == false)
             currentSpecial += specialRegen;
+    }
+
+    public void DeductHealth(int damage)
+    {
+        currentHealth -= damage;
+        gameController.CheckIfGameOver();
     }
 
 
@@ -73,11 +77,6 @@ public class PlayerData : MonoBehaviour
     {
         int damageInflicted;
 
-        if (hitObject.tag == "Trapdoor")
-        {
-            Destroy(hitObject);
-        }
-
         if (hitObject.tag == "Key3")
         {
             HasKey3 = true;
@@ -88,20 +87,20 @@ public class PlayerData : MonoBehaviour
         if (hitObject.tag == "Mace")
         {
             damageInflicted = hitObject.GetComponent<MaceController>().damage;
-            gameController.DeductHealth(damageInflicted);
+            DeductHealth(damageInflicted);
         }
 
         if (hitObject.tag == "FireSkull")
         {
             damageInflicted = hitObject.GetComponent<FireSkullController>().damage;
-            gameController.DeductHealth(damageInflicted);
+            DeductHealth(damageInflicted);
             Destroy(hitObject);
         }
 
         if (hitObject.tag == "DarkSkull")
         {
             damageInflicted = hitObject.GetComponent<DarkSkullController>().damage;
-            gameController.DeductHealth(damageInflicted);
+            DeductHealth(damageInflicted);
             Destroy(hitObject);
         }
 
@@ -113,13 +112,13 @@ public class PlayerData : MonoBehaviour
         if (hitObject.tag == "SawBlade")
         {
             damageInflicted = hitObject.GetComponent<SawBladeController>().damage;
-            gameController.DeductHealth(damageInflicted);
+            DeductHealth(damageInflicted);
         }
 
         if(hitObject.tag == "ZombieHitBox")
         {
             damageInflicted =  GameObject.FindGameObjectWithTag("Zombie").GetComponent<ZombieController>().damage;
-            gameController.DeductHealth(damageInflicted);
+            DeductHealth(damageInflicted);
         }
 
         if (hitObject.tag == "Health")
@@ -130,7 +129,7 @@ public class PlayerData : MonoBehaviour
         if(hitObject.tag == "WoodenSpike")
         {
             damageInflicted = 100;
-            gameController.DeductHealth(damageInflicted);
+            DeductHealth(damageInflicted);
         }
 
     }

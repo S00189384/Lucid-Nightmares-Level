@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class DarkBallController : MonoBehaviour
 {
-    GameController gameController;
     public int damage = 30;
-
-    private void Start()
-    {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
-            gameController.DeductHealth(damage);
+            collision.gameObject.GetComponent<PlayerData>().DeductHealth(damage);
         if (collision.gameObject.tag == "WoodenSpike")
             Destroy(gameObject);
     }
-
 }

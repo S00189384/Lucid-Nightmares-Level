@@ -43,6 +43,7 @@ TagManager:
   - Boss
   - BossRain
   - BossProjectile
+  - BossHealthBar
   layers:
   - Default
   - TransparentFX

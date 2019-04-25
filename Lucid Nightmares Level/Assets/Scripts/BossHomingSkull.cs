@@ -11,7 +11,6 @@ public enum HomingSkullState
 
 public class BossHomingSkull : MonoBehaviour
 {
-    GameController gameController;
     public HomingSkullState homingSkullState;
     GameObject player;
     Animator animator;
@@ -32,7 +31,6 @@ public class BossHomingSkull : MonoBehaviour
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
         homingSkullState = HomingSkullState.Idle;
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -85,7 +83,8 @@ public class BossHomingSkull : MonoBehaviour
         for (int i = 0; i < hitObjects.Length; i++)
         {
             if (hitObjects[i].tag == "Player")
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().DeductHealth(damage);
+                hitObjects[i].GetComponent<PlayerData>().DeductHealth(damage);
+                
         }
     }
 }

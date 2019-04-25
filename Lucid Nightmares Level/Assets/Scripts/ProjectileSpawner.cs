@@ -40,9 +40,7 @@ public class ProjectileSpawner : MonoBehaviour
     {
         float minX = spawnArea.bounds.min.x;
         float maxX = spawnArea.bounds.max.x;
-
         float randomX = Random.Range(minX, maxX);
-
         return new Vector3(randomX, transform.position.y);
     }
 

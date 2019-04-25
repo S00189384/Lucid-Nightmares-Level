@@ -19,13 +19,6 @@ public class CanvasDisplay : MonoBehaviour
         Key3.enabled = false;
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-
-    }
-
 
     public void DisplayKey()
     {

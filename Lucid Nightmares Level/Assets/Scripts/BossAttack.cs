@@ -25,14 +25,12 @@ public class BossAttack : MonoBehaviour
 
     GameObject player;
     BossMovement bossMovement;
-    BossAnimationController bossAnimation;
 
 	// Use this for initialization
 	void Start ()
     {
         bossMovement = GetComponent<BossMovement>();
         player = GameObject.FindGameObjectWithTag("Player");
-        bossAnimation = GetComponent<BossAnimationController>();
         randomAttack = Random.Range(1, 4);
     }
 

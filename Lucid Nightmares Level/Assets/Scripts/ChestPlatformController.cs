@@ -6,7 +6,6 @@ public class ChestPlatformController : MonoBehaviour
 {
     public Transform movePosition;
     public float moveSpeed = 1;
-    Vector2 startingPosition;
     PlayerData playerData;
     Rigidbody2D body;
 
@@ -17,7 +16,6 @@ public class ChestPlatformController : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
-        startingPosition = transform.position;
     }
 	
 	// Update is called once per frame
@@ -30,7 +28,6 @@ public class ChestPlatformController : MonoBehaviour
 
         if (playerData.HasKey3 == true && ShouldMove)
         {
-            //body.MovePosition(Vector2.MoveTowards(transform.position, movePosition.position, moveSpeed * Time.deltaTime));
             body.velocity = (movePosition.position - transform.position).normalized * moveSpeed;
         }
     }
@@ -42,16 +39,4 @@ public class ChestPlatformController : MonoBehaviour
             ShouldMove = true;
         }
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        ShouldMove = true;
-    //    }
-    //    else if (collision.gameObject.tag == "StopMoving")
-    //    {
-    //        ShouldMove = false;
-    //    }
-    //}
 }

@@ -14,6 +14,7 @@ public class FourthGhostController : MonoBehaviour
     public Transform[] ghostNodes;
     public int NodeCount { get { return ghostNodes.Length; } }
 
+    GameController gameController;
     PlayerData playerData;
     BossMovement bossMovement;
     Rigidbody2D body;
@@ -33,6 +34,7 @@ public class FourthGhostController : MonoBehaviour
     {
         fourthGhostState = FourthGhostState.Idle;
         body = GetComponent<Rigidbody2D>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         bossMovement = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossMovement>();
@@ -81,7 +83,7 @@ public class FourthGhostController : MonoBehaviour
         if(Vector2.Distance(transform.position, ghostNodes[ghostNodes.Length - 1].transform.position) <= 0.5f)
         {
             HasPlayer = false;
-            playerData.BossFightActive = true;
+            gameController.BossFightActive = true;
 
             fourthGhostState = FourthGhostState.Dissapearing;
         }

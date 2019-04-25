@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossRoomTrapdoor : MonoBehaviour
 {
-    PlayerData playerData;
+    GameController gameController;
     SpriteRenderer spriteRenderer;
     Rigidbody2D body;
     public float moveSpeed = 4;
@@ -14,7 +14,7 @@ public class BossRoomTrapdoor : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         body = GetComponent<Rigidbody2D>();
         redEyesLight.enabled = false;
@@ -23,7 +23,7 @@ public class BossRoomTrapdoor : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (playerData.BossFightActive)
+        if (gameController.BossFightActive)
         {
             body.MovePosition(Vector2.MoveTowards(transform.position, movePosition.transform.position, moveSpeed * Time.deltaTime));
             if(Vector2.Distance(transform.position,movePosition.transform.position) <= 0.05f)
