@@ -20,13 +20,13 @@ public class BossMovement : MonoBehaviour
     Animator animator;
     GameObject player;
     //Movement Stuff.
+    public bool PlayerInRange;
     public int bossDirection;
     public float distanceToPlayer;
     public float distanceToStartAttacking = 3;
     public float runSpeed = 4;
     public float distanceToStartWalking = 5;
     public float walkSpeed = 2f;
-
 
     // Use this for initialization
     void Start()
@@ -69,13 +69,17 @@ public class BossMovement : MonoBehaviour
                     sprite.flipX = false;
                 }
 
-                //Continually getting the distance from boss to player.
+                //Continually getting the distance from boss to player & calculating whether player is in range
                 distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+                if (distanceToPlayer < distanceToStartAttacking)
+                    PlayerInRange = true;
+                else
+                    PlayerInRange = false;
              
                 //Always moves to player. 
                 MoveToPlayer();
 
-                //Checks if boss is within range to start his teleport process (timer
+                //Checks if boss is within range to start his teleport process (timer)
                 if (StartTeleportProcess)
                 {
                     teleportTimer += Time.deltaTime;
@@ -91,23 +95,6 @@ public class BossMovement : MonoBehaviour
                     bossData.currentHealth = 0;
                 }
 
-                if (Input.GetKeyDown(KeyCode.Alpha1))
-                {
-                    Teleport();
-                }
-
-                //if (Input.GetKey(KeyCode.Alpha1))
-                //    bossState = BossState.Attack1;
-                //if (Input.GetKey(KeyCode.Alpha2))
-                //    bossState = BossState.Attack2;
-                //if (Input.GetKey(KeyCode.Alpha3))
-                //    bossState = BossState.Dead;
-                //if (Input.GetKey(KeyCode.Alpha4))
-                //    bossState = BossState.Evade;
-                //if (Input.GetKey(KeyCode.Alpha5))
-                //    bossState = BossState.Walk;
-                //if (Input.GetKey(KeyCode.Alpha6))
-                //    bossState = BossState.Run;
             }
         }
 
@@ -126,27 +113,28 @@ public class BossMovement : MonoBehaviour
         if (distanceToPlayer >= distanceToStartWalking)
         {
             bossAnimation.SetState(BossState.Run);
-            bossAttack.CanAttack = false;
             body.velocity = new Vector2(bossDirection, 0) * runSpeed;
         }
         //Closer to Player.
-        if(distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
+        else if(distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
         {
             bossAnimation.SetState(BossState.Walk);
-            bossAttack.CanAttack = false;
             body.velocity = new Vector2(bossDirection, 0) * walkSpeed;
         }
-        //Within range to attack, idle animation, stops moving & random attacks.
-        if(distanceToPlayer < distanceToStartAttacking)
+        //Within range to attack, idle animation, stops moving.
+        else if(PlayerInRange && bossAttack.Attacking != true)
         {
-            bossAttack.CanAttack = true;
             StartTeleportProcess = true;
             body.velocity = Vector2.zero;
             bossAnimation.SetState(BossState.Idle);
-
             //Attack
         }
-        
+        else if (PlayerInRange && bossAttack.Attacking == true)
+        {
+           body.velocity = Vector2.zero;
+           bossAnimation.bossState = bossAttack.GenerateRandomAttack();
+           
+        }
     }
 
     //Ensures the new teleport position is not too close to the player (more than distanceToPlayerTolerance).
@@ -172,4 +160,5 @@ public class BossMovement : MonoBehaviour
         float randomX = Random.Range(minX, maxX);
         return new Vector2(randomX, transform.position.y);
     }
+
 }

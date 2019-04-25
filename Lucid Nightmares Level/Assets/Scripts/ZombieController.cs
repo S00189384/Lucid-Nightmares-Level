@@ -171,7 +171,6 @@ public class ZombieController : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerHitBox")
         {
-            Debug.Log("Hit by player");
             currentHealth -= player.GetComponent<PlayerAttack>().DamageInflicted;
         }
     }

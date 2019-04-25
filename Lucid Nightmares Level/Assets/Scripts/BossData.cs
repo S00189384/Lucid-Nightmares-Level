@@ -40,7 +40,7 @@ public class BossData : MonoBehaviour
         }
 
         //As soon as player is in boss room - boss wakes up.
-        if(playerData.InBossRoom == true)
+        if(playerData.BossFightActive == true)
         {
             //Waking up animation plays. IsAwake set to true at end of animation. Then boss can move / attack.
             bossAnimation.SetState(BossState.WakingUp);
@@ -50,6 +50,7 @@ public class BossData : MonoBehaviour
         if (currentHealth <= 0)
         {
             IsAlive = false;
+            playerData.BossFightActive = false;
 
             destroyTimer += Time.deltaTime;
             if (destroyTimer >= timeToDestroyBoss)

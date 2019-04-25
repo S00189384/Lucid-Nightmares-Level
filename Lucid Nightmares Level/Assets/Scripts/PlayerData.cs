@@ -9,7 +9,7 @@ public class PlayerData : MonoBehaviour
     public bool HasKey2 = false;
     public bool HasKey3 = false;
 
-    public bool InBossRoom = false;
+    public bool BossFightActive = false;
 
     public float maxHealth = 100;
     public float currentHealth;
@@ -24,12 +24,14 @@ public class PlayerData : MonoBehaviour
 
     GameController gameController;
     CanvasDisplay canvasDisplay;
+    BossData bossData;
 
     private void Start()
     {
         ResetStats();
         checkpointPosition = transform.position;
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        bossData = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossData>();
         canvasDisplay = GameObject.FindGameObjectWithTag("UI").GetComponent<CanvasDisplay>();
     }
 
@@ -46,6 +48,14 @@ public class PlayerData : MonoBehaviour
         {
             currentStamina += staminaRegen;
         }
+
+        //For boss fight, player can't shoot light source.
+        if (BossFightActive)
+        {
+            currentSpecial = 0;
+        }
+        else if (BossFightActive == false && bossData.IsAlive == false)
+            currentSpecial += specialRegen;
     }
 
 

@@ -23,7 +23,7 @@ public class BossRoomTrapdoor : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (playerData.InBossRoom)
+        if (playerData.BossFightActive)
         {
             body.MovePosition(Vector2.MoveTowards(transform.position, movePosition.transform.position, moveSpeed * Time.deltaTime));
             if(Vector2.Distance(transform.position,movePosition.transform.position) <= 0.05f)

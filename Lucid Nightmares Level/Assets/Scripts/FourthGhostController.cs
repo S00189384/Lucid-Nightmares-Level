@@ -81,7 +81,7 @@ public class FourthGhostController : MonoBehaviour
         if(Vector2.Distance(transform.position, ghostNodes[ghostNodes.Length - 1].transform.position) <= 0.5f)
         {
             HasPlayer = false;
-            playerData.InBossRoom = true;
+            playerData.BossFightActive = true;
 
             fourthGhostState = FourthGhostState.Dissapearing;
         }

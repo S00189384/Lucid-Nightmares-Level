@@ -5,17 +5,19 @@ using UnityEngine;
 public class BossAttack : MonoBehaviour
 {
     //General
-    public bool CanAttack;
+    public bool Attacking = false;
     public int randomAttack;
     public float attackTimer;
-    public float timeToAttack;
+    public float timeToAttack = 3.5f;
 
     //Attack1, homing exploding skull
     public Transform spawnPosition;
-    public GameObject explodingSkull;
+    public GameObject homingSkull;
 
     //Attack2, rain attack
     public bool RainAttackActive;
+    public float rainAttackDurationTimer;
+    public float timeToStopRain = 4;
 
     //Attack3, Shoot basic projectile towards player
     public GameObject objectToShoot;
@@ -28,65 +30,75 @@ public class BossAttack : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        bossMovement = GetComponent<BossMovement>();
         player = GameObject.FindGameObjectWithTag("Player");
         bossAnimation = GetComponent<BossAnimationController>();
-	}
-	
-	// Update is called once per frame
-	void Update()
+        randomAttack = Random.Range(1, 4);
+    }
+
+    void Update()
     {
-        if(CanAttack)
+        //If the player is in range & its time to attack, Attacking bool is true;
+        //In BossMovement when Attacking bool is true, boss does a random attack.
+        if(bossMovement.PlayerInRange)
         {
             attackTimer += Time.deltaTime;
             if (attackTimer >= timeToAttack)
+                Attacking = true;
+            else
+                Attacking = false;
+        }
+
+        if(RainAttackActive)
+        {
+            rainAttackDurationTimer += Time.deltaTime;
+            if (rainAttackDurationTimer >= timeToStopRain)
             {
-                randomAttack = Random.Range(1, 4);
-
-                if (randomAttack == 1)
-                {
-                    bossAnimation.SetState(BossState.Attack1);
-                }
-                else if (randomAttack == 2)
-                {
-                    bossAnimation.SetState(BossState.Attack2);
-                }
-                else
-                {
-                    bossAnimation.SetState(BossState.Attack3);
-                }
-
+                RainAttackActive = false;
+                rainAttackDurationTimer = 0;
             }
 
+        }
+    }
 
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                RainAttackActive = true;
-            }
-            if(Input.GetKeyDown(KeyCode.H))
-            {
-                bossAnimation.SetState(BossState.Attack3);
-                Debug.Log("h");
-            }
-        }		
-	}
+    //Generates a random attack state animation which is used in BossMovement.
+    public BossState GenerateRandomAttack()
+    {
+        BossState attackState;
 
+        if (randomAttack == 1)
+            attackState = BossState.Attack1;
+        else if (randomAttack == 2)
+            attackState = BossState.Attack2;
+        else
+            attackState = BossState.Attack3;
+
+        return attackState;
+    }
+
+    //At the end of each attack animation, the next RNG attack is set up, and the timer is reset.
+    public void ResetAttackTimer()
+    {
+        randomAttack = Random.Range(1, 4);
+        attackTimer = 0;
+    }
+
+
+    //These methods are called at a particular frame in the animation.
     //Attack 1
     public void SpawnHomingSkull()
     {
-        Instantiate(explodingSkull, spawnPosition.transform.position, Quaternion.identity);
+        Instantiate(homingSkull, spawnPosition.transform.position, Quaternion.identity);
     }
-
-    //Attack 2
+    //Attack 2. 
     public void StartRain()
     {
-        RainAttackActive = true;
+        RainAttackActive = true;       
     }
-
     //Attack 3
     public void ShootProjectile()
     {
         GameObject go = Instantiate(objectToShoot, transform.position, Quaternion.identity);
         go.GetComponent<Rigidbody2D>().velocity = (player.transform.position - transform.position).normalized * projectileSpeed;
     }
-
 }
