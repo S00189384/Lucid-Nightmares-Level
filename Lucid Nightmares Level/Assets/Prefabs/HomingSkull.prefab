@@ -180,7 +180,7 @@ MonoBehaviour:
   distanceToPlayer: 0
   timer: 0
   explodeTime: 1.5
-  explodeRadius: 3
+  explodeRadius: 2.2
   damage: 50
   CanExplode: 0
 --- !u!212 &212634936809590340
