@@ -53,7 +53,11 @@ public class PlayerData : MonoBehaviour
             currentSpecial = 0;
         }
         else if (gameController.BossFightActive == false && bossData.IsAlive == false)
+        {
             currentSpecial += specialRegen;
+            if (currentSpecial > maxSpecial)
+                currentSpecial = maxSpecial;
+        }
     }
 
     public void DeductHealth(int damage)

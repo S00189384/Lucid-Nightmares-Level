@@ -123,14 +123,12 @@ public class BossMovement : MonoBehaviour
             StartTeleportProcess = true;
             body.velocity = Vector2.zero;
             bossAnimation.SetState(BossState.Idle);
-            //Attack
         }
         //If boss can attack (attack timer reaches time to attack), a random attack is generated.
         else if (PlayerInRange && bossAttack.Attacking == true)
         {
            body.velocity = Vector2.zero;
-           bossAnimation.bossState = bossAttack.GenerateRandomAttack();
-           
+           bossAnimation.bossState = bossAttack.GenerateRandomAttack();         
         }
     }
 
