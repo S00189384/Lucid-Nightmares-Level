@@ -67,4 +67,10 @@ public class BossData : MonoBehaviour
     {
         IsAwake = true;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerHitBox")
+            currentHealth -= collision.gameObject.GetComponentInParent<PlayerAttack>().DamageInflicted;
+    }
 }

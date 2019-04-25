@@ -72,7 +72,7 @@ public class BossMovement : MonoBehaviour
                 else
                     PlayerInRange = false;
              
-                //Always moves to player. 
+                //Always moves to player and calls the BossAttack script if the boss can attack 
                 MoveToPlayer();
 
                 //Checks if boss is within range to start his teleport process (timer)
@@ -125,6 +125,7 @@ public class BossMovement : MonoBehaviour
             bossAnimation.SetState(BossState.Idle);
             //Attack
         }
+        //If boss can attack (attack timer reaches time to attack), a random attack is generated.
         else if (PlayerInRange && bossAttack.Attacking == true)
         {
            body.velocity = Vector2.zero;

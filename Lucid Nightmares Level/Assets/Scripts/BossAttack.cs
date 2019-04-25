@@ -36,7 +36,7 @@ public class BossAttack : MonoBehaviour
 
     void Update()
     {
-        //If the player is in range & its time to attack, Attacking bool is true;
+        //If the player is in range & its time to attack, Attacking bool is true.
         //In BossMovement when Attacking bool is true, boss does a random attack.
         if(bossMovement.PlayerInRange)
         {
@@ -47,6 +47,8 @@ public class BossAttack : MonoBehaviour
                 Attacking = false;
         }
 
+        //Rain attack animation turns RainAttackActive true.
+        //Rain attack stops after a certain amount of time.
         if(RainAttackActive)
         {
             rainAttackDurationTimer += Time.deltaTime;
@@ -55,7 +57,6 @@ public class BossAttack : MonoBehaviour
                 RainAttackActive = false;
                 rainAttackDurationTimer = 0;
             }
-
         }
     }
 
