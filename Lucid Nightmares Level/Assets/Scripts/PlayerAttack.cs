@@ -14,7 +14,7 @@ public class PlayerAttack : MonoBehaviour
     Vector2 ProjectileDirection;
 
     //Stamina Drain & Attack damage.
-    public float specialDrain = 80;
+    public float specialDrain = 100;
     public float specialDamage = 10;
     public float Attack1Drain = 15;
     public float Attack1Damage = 5;
