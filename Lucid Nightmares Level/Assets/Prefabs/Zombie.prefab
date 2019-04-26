@@ -251,7 +251,7 @@ MonoBehaviour:
   zombieDirection: 0
   distanceToPlayer: 0
   currentHealth: 0
-  maxHealth: 50
+  maxHealth: 55
   walkSpeed: 0.3
   runSpeed: 2
   damage: 5

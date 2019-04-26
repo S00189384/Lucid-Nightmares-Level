@@ -12,7 +12,7 @@ public class BossData : MonoBehaviour
 
     public bool IsAlive;
     public float destroyTimer;
-    public float timeToDestroyBoss = 6;
+    public float timeToDestroyCorpse = 4;
 
     public float currentHealth;
     public float maxHealth = 300;
@@ -51,9 +51,10 @@ public class BossData : MonoBehaviour
         {
             IsAlive = false;
             gameController.BossFightActive = false;
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>());
 
             destroyTimer += Time.deltaTime;
-            if (destroyTimer >= timeToDestroyBoss)
+            if (destroyTimer >= timeToDestroyCorpse)
                 Destroy(gameObject);
         }
         else

@@ -10,6 +10,7 @@ public class ThirdGhostController : MonoBehaviour
     Rigidbody2D body;
     public float moveSpeed = 5;
     public float distanceToPlayer;
+    public float distanceToStartMoving = 4;
     public bool CanMove = false;
 
 	// Use this for initialization
@@ -23,7 +24,7 @@ public class ThirdGhostController : MonoBehaviour
 	void Update ()
     {
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if(distanceToPlayer <= 2)
+        if(distanceToPlayer <= distanceToStartMoving)
         {
             CanMove = true;               
         }

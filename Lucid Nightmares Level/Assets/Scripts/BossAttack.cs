@@ -15,6 +15,7 @@ public class BossAttack : MonoBehaviour
     public GameObject homingSkull;
 
     //Attack2, rain attack
+    public bool CanCastRain;
     public bool RainAttackActive;
     public float rainAttackDurationTimer;
     public float timeToStopRain = 4;
@@ -25,17 +26,24 @@ public class BossAttack : MonoBehaviour
 
     GameObject player;
     BossMovement bossMovement;
+    BossData bossData;
 
 	// Use this for initialization
 	void Start ()
     {
         bossMovement = GetComponent<BossMovement>();
+        bossData = GetComponent<BossData>();
         player = GameObject.FindGameObjectWithTag("Player");
         randomAttack = Random.Range(1, 4);
     }
 
     void Update()
     {
+        //If boss gets low on health, becomes harder.
+        if(bossData.currentHealth <= (bossData.maxHealth * 0.6))
+            timeToAttack = 2;
+
+
         //If the player is in range & its time to attack, Attacking bool is true.
         //In BossMovement when Attacking bool is true, boss does a random attack.
         if(bossMovement.PlayerInRange)
@@ -51,12 +59,17 @@ public class BossAttack : MonoBehaviour
         //Rain attack stops after a certain amount of time.
         if(RainAttackActive)
         {
+            CanCastRain = false;
             rainAttackDurationTimer += Time.deltaTime;
             if (rainAttackDurationTimer >= timeToStopRain)
             {
                 RainAttackActive = false;
                 rainAttackDurationTimer = 0;
             }
+        }
+        else
+        {
+            CanCastRain = true;
         }
     }
 

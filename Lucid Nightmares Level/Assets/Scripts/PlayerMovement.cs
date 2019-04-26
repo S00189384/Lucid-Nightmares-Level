@@ -84,12 +84,6 @@ public class PlayerMovement : CharacterMovement
             playerAnimation.SetState(PlayerMovementState.Jogging);
         }
 
-        else if (Input.GetKey(KeyCode.E) && isOnJumpingSurface && playerData.currentStamina > 0)
-        {
-            Dash(horizontal);
-            playerAnimation.SetState(PlayerMovementState.Dash);
-        }
-
         if (Input.GetMouseButtonDown(0) && isOnJumpingSurface && playerData.currentStamina > 0)
         {
             playerAnimation.SetState(PlayerMovementState.Attack1);

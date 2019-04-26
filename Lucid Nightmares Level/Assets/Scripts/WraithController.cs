@@ -48,6 +48,9 @@ public class WraithController : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        if (currentHealth <= 0)
+            Destroy(gameObject);
+
         //Tracking distance to player.
         if (Vector2.Distance(transform.position, player.transform.position) <= rangeToAttack)
             playerWithinRange = true;
