@@ -6,7 +6,6 @@ public class BossData : MonoBehaviour
 {
     BossAnimationController bossAnimation;
     GameController gameController;
-    PlayerData playerData;
 
     public bool IsAwake;
 
@@ -23,7 +22,6 @@ public class BossData : MonoBehaviour
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         bossAnimation = GetComponent<BossAnimationController>();
-        playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
 
         currentHealth = maxHealth;
         IsAwake = false;

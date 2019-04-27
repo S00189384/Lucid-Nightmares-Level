@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileSpawner : MonoBehaviour
 {
+    GameController gameController;
     InvisRoomTrigger invisRoomTrigger;
     BoxCollider2D spawnArea;
     Vector3 randomSpawnPosition;
@@ -17,7 +18,9 @@ public class ProjectileSpawner : MonoBehaviour
 	void Start ()
     {
         spawnArea = GetComponent<BoxCollider2D>();
+        spawnTime = spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
         invisRoomTrigger = GameObject.FindGameObjectWithTag("InvisRoomTrigger").GetComponent<InvisRoomTrigger>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 	}
 	
 	// Update is called once per frame
@@ -34,6 +37,12 @@ public class ProjectileSpawner : MonoBehaviour
                 spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
             }
         }	
+
+        //If the boss fight is active, destroy the spawners since player isn't going back.
+        if(gameController.BossFightActive)
+        {
+            Destroy(gameObject);
+        }
 	}
 
     public Vector3 PickRandomSpawnPosition()
@@ -43,5 +52,4 @@ public class ProjectileSpawner : MonoBehaviour
         float randomX = Random.Range(minX, maxX);
         return new Vector3(randomX, transform.position.y);
     }
-
 }

@@ -40,5 +40,4 @@ public class PlayerAnimationController : MonoBehaviour
             playerState = newState;
         }
     }
-
 }

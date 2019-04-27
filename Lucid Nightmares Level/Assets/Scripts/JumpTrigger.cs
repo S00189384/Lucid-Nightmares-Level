@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class JumpTrigger : MonoBehaviour
 {
-    Rigidbody2D body;
     GameObject player;
 
     public float distanceToPlayer;
@@ -17,7 +16,6 @@ public class JumpTrigger : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        body = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
@@ -33,16 +31,13 @@ public class JumpTrigger : MonoBehaviour
             }
             rotation += 0.5f;
             transform.Rotate(0, 0, rotation);
-
         }
         else
         {
             rotation = 0;
             transform.Rotate(0, 0, rotation);
-        }
-		
+        }		
 	}
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -51,5 +46,4 @@ public class JumpTrigger : MonoBehaviour
             player.GetComponent<Rigidbody2D>().velocity += jumpForce;
         }
     }
-
 }

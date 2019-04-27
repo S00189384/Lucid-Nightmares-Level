@@ -16,7 +16,6 @@ public class FourthGhostController : MonoBehaviour
 
     GameController gameController;
     PlayerData playerData;
-    BossMovement bossMovement;
     Rigidbody2D body;
     Animator animator;
     GameObject player;
@@ -36,7 +35,6 @@ public class FourthGhostController : MonoBehaviour
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
-        bossMovement = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossMovement>();
 
         HasPlayer = false;
 	}

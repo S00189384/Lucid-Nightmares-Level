@@ -8,7 +8,6 @@ public class PlayerAttack : MonoBehaviour
     public Transform leftHitBoxPosition;
     public Transform rightHitBoxPosition;
     PlayerData playerData;
-    PlayerAnimationController playerAnimation;
     public GameObject lightSource;
     public float ProjectileForce = 5;
     Vector2 ProjectileDirection;
@@ -29,13 +28,6 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         playerData = GetComponent<PlayerData>();
-        playerAnimation = GetComponent<PlayerAnimationController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void ShootSpecial()

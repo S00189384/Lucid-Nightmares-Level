@@ -46,9 +46,7 @@ public class MainElevatorController : MonoBehaviour
         {
             SetState(ElevatorState.InMiddle);
         }
-
     }
-
 
     public void MoveToTarget()
     {
@@ -56,7 +54,6 @@ public class MainElevatorController : MonoBehaviour
             body.velocity = (targetPosition.position - transform.position).normalized * moveSpeed;
         //body.MovePosition(Vector2.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime));
     }
-
 
     public void SetState(ElevatorState newState)
     {
@@ -82,8 +79,5 @@ public class MainElevatorController : MonoBehaviour
             SetState(ElevatorState.AtBottom);
             CanMove = false;
         }
-
-
-
     }
 }

@@ -20,7 +20,6 @@ public class ZombieController : MonoBehaviour
     public ZombieState zombieState;
     ZombieState previousZombieState;
 
-    PlayerData playerData;
     Animator animator;
     SpriteRenderer sprite;
     GameObject player;
@@ -43,7 +42,6 @@ public class ZombieController : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
         currentHealth = maxHealth;
     }
 	

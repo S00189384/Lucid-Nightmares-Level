@@ -6,7 +6,6 @@ public class RainBoxController : MonoBehaviour
 {
     BossAttack bossAttack;
     BossData bossData;
-    Rigidbody2D body;
     GameObject boss;
     public BoxCollider2D rainBox;
     public GameObject rain;
@@ -20,7 +19,6 @@ public class RainBoxController : MonoBehaviour
         boss = GameObject.FindGameObjectWithTag("Boss");
         bossAttack = boss.GetComponent<BossAttack>();
         bossData = boss.GetComponent<BossData>();
-        body = GetComponent<Rigidbody2D>();	
 	}
 	
 	// Update is called once per frame
@@ -45,12 +43,11 @@ public class RainBoxController : MonoBehaviour
             }
         }
 
-        //If boss is dead, destroy rain source.
+        //If boss is dead, destroy whole rain source.
         else
         {
             Destroy(gameObject);
-        }
-    
+        }   
 	}
 
     public Vector2 GetRandomPosition()

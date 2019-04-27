@@ -72,5 +72,4 @@ public class SecondGhostController : MonoBehaviour
             ghostState = newState;
         }
     }
-
 }

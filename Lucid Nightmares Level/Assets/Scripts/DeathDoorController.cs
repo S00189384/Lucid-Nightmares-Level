@@ -5,7 +5,6 @@ using UnityEngine;
 public class DeathDoorController : MonoBehaviour
 {
     ZombieDetector zombieDetector;
-    PlayerData playerData;
     Rigidbody2D body;
     public Transform upPosition;
     public float moveSpeed = 0.1f;
@@ -14,7 +13,6 @@ public class DeathDoorController : MonoBehaviour
 	void Start ()
     {
         zombieDetector = GameObject.FindGameObjectWithTag("ZombieDetector").GetComponent<ZombieDetector>();
-        playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
         body = GetComponent<Rigidbody2D>();
 	}
 	
@@ -26,7 +24,6 @@ public class DeathDoorController : MonoBehaviour
             body.velocity = new Vector2(0, 1) * moveSpeed;
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -145,5 +145,4 @@ public class PlayerData : MonoBehaviour
         currentStamina = maxStamina;
         currentSpecial = maxSpecial;
     }
-
 }

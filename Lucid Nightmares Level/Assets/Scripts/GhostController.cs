@@ -39,7 +39,7 @@ public class GhostController : MonoBehaviour
         }
 
 
-        // After getting key and going back to portal, ghost reappears with dialogue to the player (Animation does not go to Idle - need to fix)
+        // After getting key and going back to portal, ghost reappears with dialogue to the player.
         else if(playerData.HasKey3 == true)
         {
             sprite.enabled = true;

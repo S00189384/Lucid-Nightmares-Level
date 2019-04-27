@@ -12,9 +12,8 @@ public class MimicChestController : MonoBehaviour
 {
     public MimicChestState mimicChestState;
     Animator animator;
-    public GameObject objectToSpawn;
     GameObject player;
-    Rigidbody2D body;
+    public GameObject objectToSpawn;
     public float distanceToPlayer;
     public float distanceToOpen = 3;
     public bool SpawnedObject;
@@ -22,11 +21,9 @@ public class MimicChestController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        body = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         mimicChestState = MimicChestState.Closed;
-
 	}
 	
 	// Update is called once per frame

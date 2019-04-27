@@ -15,7 +15,6 @@ public class BossAttack : MonoBehaviour
     public GameObject homingSkull;
 
     //Attack2, rain attack
-    public bool CanCastRain;
     public bool RainAttackActive;
     public float rainAttackDurationTimer;
     public float timeToStopRain = 4;
@@ -58,17 +57,12 @@ public class BossAttack : MonoBehaviour
         //Rain attack stops after a certain amount of time.
         if(RainAttackActive)
         {
-            CanCastRain = false;
             rainAttackDurationTimer += Time.deltaTime;
             if (rainAttackDurationTimer >= timeToStopRain)
             {
                 RainAttackActive = false;
                 rainAttackDurationTimer = 0;
             }
-        }
-        else
-        {
-            CanCastRain = true;
         }
     }
 
@@ -94,7 +88,6 @@ public class BossAttack : MonoBehaviour
         attackTimer = 0;
         randomAttack = Random.Range(1, 4);
     }
-
 
     //These methods are called at a particular frame in the animation.
     //Attack 1
