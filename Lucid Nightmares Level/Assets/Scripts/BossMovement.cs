@@ -71,7 +71,7 @@ public class BossMovement : MonoBehaviour
                     PlayerInRange = true;
                 else
                     PlayerInRange = false;
-             
+
                 //Always moves to player and calls the BossAttack script if the boss can attack 
                 MoveToPlayer();
 
@@ -104,40 +104,66 @@ public class BossMovement : MonoBehaviour
     }
 
     public void MoveToPlayer()
-    { 
-        //Far from Player.
-        if (distanceToPlayer >= distanceToStartWalking)
+    {
+        if (bossAttack.Attacking == true)
+        {
+            body.velocity = Vector2.zero;
+            bossAnimation.bossState = bossAttack.GenerateRandomAttack();
+        }
+        else if (distanceToPlayer >= distanceToStartWalking)
         {
             bossAnimation.SetState(BossState.Run);
             body.velocity = new Vector2(bossDirection, 0) * runSpeed;
         }
-        //Closer to Player.
-        else if(distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
+        else if (distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
         {
             bossAnimation.SetState(BossState.Walk);
             body.velocity = new Vector2(bossDirection, 0) * walkSpeed;
         }
         //Within range to attack, idle animation, stops moving.
-        else if(PlayerInRange && bossAttack.Attacking != true)
+        else if (PlayerInRange && bossAttack.Attacking == false)
         {
             StartTeleportProcess = true;
             body.velocity = Vector2.zero;
             bossAnimation.SetState(BossState.Idle);
         }
+
+
+
+
+        //Far from Player.
+        //if (distanceToPlayer >= distanceToStartWalking)
+        //{
+        //    bossAnimation.SetState(BossState.Run);
+        //    body.velocity = new Vector2(bossDirection, 0) * runSpeed;
+        //}
+        ////Closer to Player.
+        //else if(distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
+        //{
+        //    bossAnimation.SetState(BossState.Walk);
+        //    body.velocity = new Vector2(bossDirection, 0) * walkSpeed;
+        //}
+        ////Within range to attack, idle animation, stops moving.
+        //else if(PlayerInRange && bossAttack.Attacking == false)
+        //{
+        //    StartTeleportProcess = true;
+        //    body.velocity = Vector2.zero;
+        //    bossAnimation.SetState(BossState.Idle);
+        //}
         //If boss can attack (attack timer reaches time to attack), a random attack is generated.
-        else if (PlayerInRange && bossAttack.Attacking == true)
-        {
-           body.velocity = Vector2.zero;
-           bossAnimation.bossState = bossAttack.GenerateRandomAttack();         
-        }
+        //else if (PlayerInRange && bossAttack.Attacking == true)
+        //{
+        //   body.velocity = Vector2.zero;
+        //   bossAnimation.bossState = bossAttack.GenerateRandomAttack();         
+        //}
     }
 
     //Ensures the new teleport position is not too close to the player (more than distanceToPlayerTolerance).
     //Teleports boss to a position that is more than distanceToPlayerTolerance away. 
     public void Teleport()
     {
-        Vector2 newPosition = GetRandomPosition();     
-        while(Vector2.Distance(newPosition,player.transform.position) < teleportDistanceToPlayerTolerance)
+        Vector2 newPosition = GetRandomPosition();
+        while (Vector2.Distance(newPosition, player.transform.position) < teleportDistanceToPlayerTolerance)
         {
             newPosition = GetRandomPosition();
         }
@@ -155,5 +181,30 @@ public class BossMovement : MonoBehaviour
         float randomX = Random.Range(minX, maxX);
         return new Vector2(randomX, transform.position.y);
     }
+
+    //else if(distanceToPlayer < distanceToStartShooting)
+    //{
+    //    SetState(AlienState.Walking);
+        //  AttackTimer += Time.deltaTime;
+        //if(attackTimer >= timeToShoot)
+        //{
+        //body.velocity 
+        //SetState(AlienState.Shooting);
+        //}
+    //}
+
+
+    //public void ResetAttackTimer()
+    //{
+    //    AttackTimer = 0;
+    //}
+
+
+
+
+
+
+
+
 
 }

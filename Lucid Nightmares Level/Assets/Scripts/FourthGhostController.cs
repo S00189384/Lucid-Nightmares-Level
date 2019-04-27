@@ -29,7 +29,6 @@ public class FourthGhostController : MonoBehaviour
     public float timeToMove = 2;
     public int targetNode = 0;
 
-	// Use this for initialization
 	void Start ()
     {
         fourthGhostState = FourthGhostState.Idle;
@@ -42,12 +41,15 @@ public class FourthGhostController : MonoBehaviour
         HasPlayer = false;
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
+        //Giving the player full health for the upcoming boss, making his animation idle and velocity to zero so he cant move.
+        //Setting his position to equal the ghost so he carries him into the boss room.
+        //Adding a delay before the boss moves for suspense. Movement speed steadily increases.
         if(HasPlayer)
         {
             playerData = player.GetComponent<PlayerData>();
+            playerData.currentHealth = playerData.maxHealth;
             player.GetComponent<PlayerAnimationController>().SetState(PlayerMovementState.Idle);
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             player.transform.position = playerHoldPosition.transform.position;

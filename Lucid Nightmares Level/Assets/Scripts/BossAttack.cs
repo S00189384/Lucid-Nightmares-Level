@@ -91,8 +91,9 @@ public class BossAttack : MonoBehaviour
     //At the end of each attack animation, the next RNG attack is set up, and the timer is reset.
     public void ResetAttackTimer()
     {
-        randomAttack = Random.Range(1, 4);
+        Attacking = false;
         attackTimer = 0;
+        randomAttack = Random.Range(1, 4);
     }
 
 
