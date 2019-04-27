@@ -8,31 +8,6 @@ public class NavigationPath : MonoBehaviour
 
     public int NodeCount { get { return Nodes.Length; } }
 
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        if (Nodes != null)
-        {
-
-            for (int i = 0; i < Nodes.Length; i++)
-            {
-                if (i != Nodes.Length - 1)
-                {
-                    Gizmos.DrawLine(Nodes[i].position, Nodes[i + 1].position);
-                }
-
-                else
-                {
-                    Gizmos.DrawLine(Nodes[i].position, Nodes[0].position);
-                }
-
-            }
-
-        }
-    }
-
-
     public Vector2 GetNodePosition(int index)
     {
         if (index >= 0 && index < Nodes.Length)
@@ -44,6 +19,4 @@ public class NavigationPath : MonoBehaviour
             return Vector2.zero;
         }
     }
-
-
 }
