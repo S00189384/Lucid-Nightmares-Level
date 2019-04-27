@@ -105,57 +105,31 @@ public class BossMovement : MonoBehaviour
 
     public void MoveToPlayer()
     {
+        //Does a random attack.
         if (bossAttack.Attacking == true)
         {
             body.velocity = Vector2.zero;
             bossAnimation.bossState = bossAttack.GenerateRandomAttack();
         }
+        //Runs to player if far away
         else if (distanceToPlayer >= distanceToStartWalking)
         {
             bossAnimation.SetState(BossState.Run);
             body.velocity = new Vector2(bossDirection, 0) * runSpeed;
         }
+        //Walks to player after a certain distance.
         else if (distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
         {
             bossAnimation.SetState(BossState.Walk);
             body.velocity = new Vector2(bossDirection, 0) * walkSpeed;
         }
-        //Within range to attack, idle animation, stops moving.
+        //Doesn't get too close to player, idle animation, stops moving.
         else if (PlayerInRange && bossAttack.Attacking == false)
         {
             StartTeleportProcess = true;
             body.velocity = Vector2.zero;
             bossAnimation.SetState(BossState.Idle);
         }
-
-
-
-
-        //Far from Player.
-        //if (distanceToPlayer >= distanceToStartWalking)
-        //{
-        //    bossAnimation.SetState(BossState.Run);
-        //    body.velocity = new Vector2(bossDirection, 0) * runSpeed;
-        //}
-        ////Closer to Player.
-        //else if(distanceToPlayer <= distanceToStartWalking && distanceToPlayer >= distanceToStartAttacking)
-        //{
-        //    bossAnimation.SetState(BossState.Walk);
-        //    body.velocity = new Vector2(bossDirection, 0) * walkSpeed;
-        //}
-        ////Within range to attack, idle animation, stops moving.
-        //else if(PlayerInRange && bossAttack.Attacking == false)
-        //{
-        //    StartTeleportProcess = true;
-        //    body.velocity = Vector2.zero;
-        //    bossAnimation.SetState(BossState.Idle);
-        //}
-        //If boss can attack (attack timer reaches time to attack), a random attack is generated.
-        //else if (PlayerInRange && bossAttack.Attacking == true)
-        //{
-        //   body.velocity = Vector2.zero;
-        //   bossAnimation.bossState = bossAttack.GenerateRandomAttack();         
-        //}
     }
 
     //Ensures the new teleport position is not too close to the player (more than distanceToPlayerTolerance).
@@ -181,30 +155,4 @@ public class BossMovement : MonoBehaviour
         float randomX = Random.Range(minX, maxX);
         return new Vector2(randomX, transform.position.y);
     }
-
-    //else if(distanceToPlayer < distanceToStartShooting)
-    //{
-    //    SetState(AlienState.Walking);
-        //  AttackTimer += Time.deltaTime;
-        //if(attackTimer >= timeToShoot)
-        //{
-        //body.velocity 
-        //SetState(AlienState.Shooting);
-        //}
-    //}
-
-
-    //public void ResetAttackTimer()
-    //{
-    //    AttackTimer = 0;
-    //}
-
-
-
-
-
-
-
-
-
 }

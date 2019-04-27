@@ -43,7 +43,6 @@ public class BossAttack : MonoBehaviour
         if(bossData.currentHealth <= (bossData.maxHealth * 0.6))
             timeToAttack = 2;
 
-
         //If the player is in range & its time to attack, Attacking bool is true.
         //In BossMovement when Attacking bool is true, boss does a random attack.
         if(bossMovement.PlayerInRange)
