@@ -6,7 +6,9 @@ using TMPro;
 public class PortalController : MonoBehaviour
 {
     public string portalDestination;
-    TextMeshPro text;
+    public string interactMessage;
+    public TextMeshPro destinationText;
+    public TextMeshPro interactText;
     public GameObject player;
     public float distanceFromPlayer;
     public float interactDistance = 1.9f;
@@ -15,8 +17,8 @@ public class PortalController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        text = GetComponentInChildren<TextMeshPro>();
-        text.text = portalDestination;
+        destinationText.text = portalDestination;
+        interactText.text = interactMessage;
     }
 	
 	// Update is called once per frame
@@ -29,9 +31,16 @@ public class PortalController : MonoBehaviour
             //Load Scene
         }
         if (distanceFromPlayer <= textDisplayDistance)
-            text.enabled = true;
+        {
+            destinationText.enabled = true;
+            interactText.enabled = true;
+        }
+
         else
-            text.enabled = false;
+        {
+            destinationText.enabled = false;
+            interactText.enabled = false;
+        }
   
     }
 }
