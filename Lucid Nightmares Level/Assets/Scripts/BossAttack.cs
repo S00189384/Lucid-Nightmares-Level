@@ -8,7 +8,15 @@ public class BossAttack : MonoBehaviour
     public bool Attacking = false;
     public int randomAttack;
     public float attackTimer;
-    public float timeToAttack = 3.5f;
+    public float timeToAttack;
+
+    //Phase 1
+    public float P1minAttackTime = 2.1f;
+    public float P1maxAttackTime = 2.5f;
+
+    //Phase 2
+    public float P2minAttackTime = 1.5f;
+    public float P2maxAttackTime = 2.1f;
 
     //Attack1, homing exploding skull
     public Transform spawnPosition;
@@ -33,15 +41,10 @@ public class BossAttack : MonoBehaviour
         bossMovement = GetComponent<BossMovement>();
         bossData = GetComponent<BossData>();
         player = GameObject.FindGameObjectWithTag("Player");
-        randomAttack = Random.Range(1, 4);
     }
 
     void Update()
     {
-        //If boss gets low on health, becomes harder.
-        if(bossData.currentHealth <= (bossData.maxHealth * 0.6))
-            timeToAttack = 2;
-
         //If the player is in range & its time to attack, Attacking bool is true.
         //In BossMovement when Attacking bool is true, boss does a random attack.
         if(bossMovement.PlayerInRange)
@@ -62,6 +65,7 @@ public class BossAttack : MonoBehaviour
             {
                 RainAttackActive = false;
                 rainAttackDurationTimer = 0;
+                timeToStopRain = 6;
             }
         }
     }
@@ -73,20 +77,29 @@ public class BossAttack : MonoBehaviour
 
         if (randomAttack == 1)
             attackState = BossState.Attack1;
-        else if (randomAttack == 2)
+        else if (randomAttack == 2 && RainAttackActive == false)
             attackState = BossState.Attack2;
+        else if(randomAttack == 2 && RainAttackActive)
+        {
+            attackState = BossState.Attack2;
+        }
         else
             attackState = BossState.Attack3;
 
         return attackState;
     }
 
-    //At the end of each attack animation, the next RNG attack is set up, and the timer is reset.
+    //At the end of each attack animation, the next RNG attack is set up, the timer is reset.
+    //Checks boss health and adjusts his time to attack based on health.
     public void ResetAttackTimer()
     {
         Attacking = false;
         attackTimer = 0;
         randomAttack = Random.Range(1, 4);
+        if (bossData.currentHealth >= (bossData.maxHealth * 0.6))
+            timeToAttack = Random.Range(P1minAttackTime, P1maxAttackTime);
+        else
+            timeToAttack = Random.Range(P2minAttackTime, P2maxAttackTime);
     }
 
     //These methods are called at a particular frame in the animation.
@@ -106,4 +119,5 @@ public class BossAttack : MonoBehaviour
         GameObject go = Instantiate(objectToShoot, transform.position, Quaternion.identity);
         go.GetComponent<Rigidbody2D>().velocity = (player.transform.position - transform.position).normalized * projectileSpeed;
     }
+
 }

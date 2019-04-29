@@ -128,14 +128,13 @@ public class PlayerData : MonoBehaviour
         if (hitObject.tag == "Health")
         {
             Destroy(hitObject);
-            currentHealth += 20;
+            currentHealth += 60;
         }
         if(hitObject.tag == "WoodenSpike")
         {
             damageInflicted = 100;
             DeductHealth(damageInflicted);
         }
-
     }
 
     // Sets all stats to max values.

@@ -88,7 +88,7 @@ public class BossMovement : MonoBehaviour
                 //Testing
                 if (Input.GetKey(KeyCode.Alpha0))
                 {
-                    bossData.currentHealth = 0;
+                    bossData.currentHealth = 120;
                 }
 
             }

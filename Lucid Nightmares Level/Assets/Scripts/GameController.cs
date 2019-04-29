@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class GameController : MonoBehaviour
 {
     PlayerData playerData;
+    BossData bossData;
     public GameObject player;
 
     public bool BossFightActive = false;
@@ -15,27 +16,23 @@ public class GameController : MonoBehaviour
     void Start ()
     {
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
+        bossData = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossData>();
 	}
 	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
     public void CheckIfGameOver()
     {
-        if(playerData.currentHealth <= 0)
+        //If boss is active & player dies to boss, reset boss health.
+        if (playerData.currentHealth <= 0 && BossFightActive)
+        {
+            bossData.currentHealth = bossData.maxHealth;
+            TeleportToCheckpoint();
+        }
+
+        else if(playerData.currentHealth <= 0)
         {
             TeleportToCheckpoint();
         }
     }
-
-    //public void DeductHealth(int damage)
-    //{
-    //    playerData.currentHealth -= damage;
-    //    CheckIfGameOver();
-    //}
 
     public void TeleportToCheckpoint()
     {

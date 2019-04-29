@@ -83,8 +83,7 @@ public class BossHomingSkull : MonoBehaviour
         for (int i = 0; i < hitObjects.Length; i++)
         {
             if (hitObjects[i].tag == "Player")
-                hitObjects[i].GetComponent<PlayerData>().DeductHealth(damage);
-                
+                hitObjects[i].GetComponent<PlayerData>().DeductHealth(damage);               
         }
     }
 }
