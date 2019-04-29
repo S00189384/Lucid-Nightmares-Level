@@ -25,7 +25,10 @@ public class BossAttack : MonoBehaviour
     //Attack2, rain attack
     public bool RainAttackActive;
     public float rainAttackDurationTimer;
-    public float timeToStopRain = 4;
+    public float timeToStopRain = 6;
+    public float minTimeToStopRain = 6;
+    public float maxTimeToStopRain = 14;
+    public int rainCasts = 0;
 
     //Attack3, Shoot basic projectile towards player
     public GameObject objectToShoot;
@@ -65,7 +68,8 @@ public class BossAttack : MonoBehaviour
             {
                 RainAttackActive = false;
                 rainAttackDurationTimer = 0;
-                timeToStopRain = 6;
+                timeToStopRain = minTimeToStopRain;
+                rainCasts = 0;
             }
         }
     }
@@ -77,12 +81,8 @@ public class BossAttack : MonoBehaviour
 
         if (randomAttack == 1)
             attackState = BossState.Attack1;
-        else if (randomAttack == 2 && RainAttackActive == false)
+        else if (randomAttack == 2)
             attackState = BossState.Attack2;
-        else if(randomAttack == 2 && RainAttackActive)
-        {
-            attackState = BossState.Attack2;
-        }
         else
             attackState = BossState.Attack3;
 
@@ -108,10 +108,21 @@ public class BossAttack : MonoBehaviour
     {
         Instantiate(homingSkull, spawnPosition.transform.position, Quaternion.identity);
     }
+
     //Attack 2. 
+    //Sets rain attack active and keeps track of the number of rain casts.
+    //If the boss decides to do another rain attack while rain is falling, the counter is increased & the time to stop rain is doubled.
+    //MaxTimeToStopRain ensures that rain doesn't last for too long.
     public void StartRain()
     {
-        RainAttackActive = true;       
+        RainAttackActive = true;
+        rainCasts++;
+        if (rainCasts >= 2)
+        {
+            timeToStopRain += minTimeToStopRain;
+            if (timeToStopRain >= maxTimeToStopRain)
+                timeToStopRain = maxTimeToStopRain;
+        }
     }
     //Attack 3
     public void ShootProjectile()
