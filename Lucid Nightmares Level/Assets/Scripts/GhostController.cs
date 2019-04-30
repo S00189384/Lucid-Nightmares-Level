@@ -17,6 +17,7 @@ public class GhostController : MonoBehaviour
     PlayerData playerData;
     Animator animator;
     SpriteRenderer sprite;
+    GameController gameController;
 
 	// Use this for initialization
 	void Start ()
@@ -24,6 +25,7 @@ public class GhostController : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
         SetState(GhostState.Spawning);
 	}
@@ -33,18 +35,23 @@ public class GhostController : MonoBehaviour
     {
         animator.SetInteger("GhostState", (int)ghostState);
 
-        if(player.transform.position.x > transform.position.x && playerData.HasKey3 == false)
+        //if(player.transform.position.x > transform.position.x && playerData.HasKey3 == false)
+        //{
+        //    SetState(GhostState.Dissapearing);
+        //}
+
+        if(gameController.DialogueEnded == true)
         {
             SetState(GhostState.Dissapearing);
         }
 
 
-        // After getting key and going back to portal, ghost reappears with dialogue to the player.
-        else if(playerData.HasKey3 == true)
-        {
-            sprite.enabled = true;
-            SetState(GhostState.Idle);
-        }
+        //// After getting key and going back to portal, ghost reappears with dialogue to the player.
+        //else if(playerData.HasKey3 == true)
+        //{
+        //    sprite.enabled = true;
+        //    SetState(GhostState.Idle);
+        //}
     }
 
     public void SetState(GhostState newState)
@@ -60,6 +67,7 @@ public class GhostController : MonoBehaviour
     public void EndOfSpawn()
     {
         SetState(GhostState.Idle);
+
     }
 
     // End of Dissapear animation, sprite gets disabled.

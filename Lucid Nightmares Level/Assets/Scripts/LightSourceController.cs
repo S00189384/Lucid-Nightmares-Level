@@ -7,6 +7,7 @@ public class LightSourceController : MonoBehaviour
 {
     Rigidbody2D body;
     public float elapsedTime;
+    public float damage = 50;
     public float destroyTime = 7;
     public float visibleRadius = 5;
 
@@ -34,7 +35,7 @@ public class LightSourceController : MonoBehaviour
         {
             // If the invis tiles are tagged correctly and within range, ignore collision so the light source can pass through and enable sprite
             // as long as the light source has not been destroyed.
-            if (objectsInRadius[i].gameObject.tag == "InvisTiles" || objectsInRadius[i].gameObject.tag == "Trapdoor"/*Vector2.Distance(transform.position, objectsInRadius[i].transform.position) <= visibleRadius*/)
+            if (objectsInRadius[i].gameObject.tag == "InvisTiles" || objectsInRadius[i].gameObject.tag == "Trapdoor")
             {
                 Physics2D.IgnoreCollision(GetComponent<Collider2D>(), objectsInRadius[i].GetComponent<Collider2D>());
                 if(elapsedTime < destroyTime && Vector2.Distance(transform.position, objectsInRadius[i].transform.position) <= visibleRadius)
@@ -46,12 +47,6 @@ public class LightSourceController : MonoBehaviour
                     objectsInRadius[i].GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
-
-            // If the invis tiles are out of range - disable sprite
-            //else if (objectsInRadius[i].gameObject.tag == "InvisTiles" && Vector2.Distance(transform.position, objectsInRadius[i].transform.position) > visibleRadius)
-            //{
-            //    objectsInRadius[i].GetComponent<SpriteRenderer>().enabled = false;
-            //}
         }
     }
 

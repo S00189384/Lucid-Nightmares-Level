@@ -104,9 +104,7 @@ public class PlayerMovement : CharacterMovement
 
         if (Input.GetKey(KeyCode.Space) && isOnJumpingSurface && IsAttacking == false && playerData.currentSpecial > 0)
         {
-
             playerAnimation.SetState(PlayerMovementState.SpecialAbility);
-
         }
 
     }

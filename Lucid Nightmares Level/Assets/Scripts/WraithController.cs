@@ -47,10 +47,7 @@ public class WraithController : MonoBehaviour
 
     // Update is called once per frame
     void Update ()
-    {
-        if (currentHealth <= 0)
-            Destroy(gameObject);
-
+    {       
         //Tracking distance to player.
         if (Vector2.Distance(transform.position, player.transform.position) <= rangeToAttack)
             playerWithinRange = true;
@@ -108,6 +105,12 @@ public class WraithController : MonoBehaviour
         }
     }
 
+    public void CheckIfDead()
+    {
+        if (currentHealth <= 0)
+            Destroy(gameObject);
+    }
+
     public void ResetToIdle()
     {
         wraithState = WraithState.Idle;
@@ -119,10 +122,12 @@ public class WraithController : MonoBehaviour
         {
             Debug.Log("Hit by player");
             currentHealth -= player.GetComponent<PlayerAttack>().DamageInflicted;
+            CheckIfDead();
         }
         if(collision.gameObject.tag == "LightSource")
         {
             currentHealth -= player.GetComponent<PlayerAttack>().DamageInflicted;
+            CheckIfDead();
         }
     }
 

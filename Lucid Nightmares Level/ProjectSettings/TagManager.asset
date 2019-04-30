@@ -44,6 +44,7 @@ TagManager:
   - BossRain
   - BossProjectile
   - BossHealthBar
+  - DialogueTrigger
   layers:
   - Default
   - TransparentFX
