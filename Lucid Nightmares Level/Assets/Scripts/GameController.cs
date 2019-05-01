@@ -11,26 +11,14 @@ public class GameController : MonoBehaviour
     public GameObject player;
 
     public bool BossFightActive = false;
-    public bool DialogueActive = false;
-    public bool DialogueEnded;
 
     // Use this for initialization
     void Start ()
     {
         playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
         bossData = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossData>();
-        DialogueEnded = false;
+        //DialogueEnded = false;
 	}
-
-    private void Update()
-    {
-        if(DialogueActive)
-        {
-            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            player.GetComponent<PlayerAnimationController>().SetState(PlayerMovementState.Idle);
-
-        }
-    }
 
     public void CheckIfGameOver()
     {

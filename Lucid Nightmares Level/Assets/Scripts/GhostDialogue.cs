@@ -6,42 +6,45 @@ using TMPro;
 
 public class GhostDialogue : MonoBehaviour
 {
-    GameController gameController;
     DialogueTrigger dialogueTrigger;
+    GameObject player;
     public TextMeshProUGUI ghostDialogue;
+    public Transform dialoguePlayerPosition;
     public Image dialogueBox;
     public string[] sentences;
     public float typingSpeed = 2;
     private int index;
     public bool AtEndOfSentence;
+    public bool DialogueEnded = false;
+    public bool DialogueActive = false;
 
     private void Start()
     {
         dialogueTrigger = GameObject.FindGameObjectWithTag("DialogueTrigger").GetComponent<DialogueTrigger>();
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        if (gameController.DialogueActive == false)
+        if (dialogueTrigger.DialogueEnabled == false)
         {
             dialogueBox.gameObject.SetActive(false);
         }
 
-        if (gameController.DialogueActive)
+        if (dialogueTrigger.DialogueEnabled)
         {
+            player.transform.position = dialoguePlayerPosition.transform.position;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            player.GetComponent<PlayerAnimationController>().SetState(PlayerMovementState.Idle);
             dialogueBox.gameObject.SetActive(true);
-            if(AtEndOfSentence == false)
-            {
-                TypeText();
-            }
+            TypeText();
         }
-          
+
     }
 
     public void NextSentence()
     {
-        if(index < sentences.Length - 1)
+        if (index < sentences.Length - 1)
         {
             index++;
             ghostDialogue.text = "";
@@ -49,22 +52,15 @@ public class GhostDialogue : MonoBehaviour
         }
         else
         {
-            gameController.DialogueActive = false;
-            gameController.DialogueEnded = true;
+            dialogueTrigger.DialogueEnabled = false;
+            DialogueEnded = true;
             Destroy(GameObject.FindGameObjectWithTag("DialogueTrigger"));
         }
     }
 
     public void TypeText()
     {
-        foreach (char letter in sentences[index].ToCharArray())
-        {
-            ghostDialogue.text += letter;
-            if (ghostDialogue.text == sentences[index])
-            {
-                AtEndOfSentence = true;
-            }
-        }
+        ghostDialogue.text = sentences[index];
     }
 
 }
