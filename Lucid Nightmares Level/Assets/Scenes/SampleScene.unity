@@ -15413,7 +15413,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4929318024101864, guid: 3e33dff61abab56449cae110ce8366f0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.7
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4929318024101864, guid: 3e33dff61abab56449cae110ce8366f0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -16004,8 +16004,8 @@ MonoBehaviour:
   dialoguePlayerPosition: {fileID: 1719198098}
   dialogueBox: {fileID: 274608311}
   sentences:
-  - You shouldn't have come here.....
-  - 'What you need is in that chest. '
+  - You shouldn't have come here..
+  - What you're looking for is in this chest..
   typingSpeed: 5
   AtEndOfSentence: 0
   DialogueEnded: 0
@@ -16774,7 +16774,7 @@ MonoBehaviour:
   destroyTimer: 0
   timeToDestroyCorpse: 6
   currentHealth: 0
-  maxHealth: 400
+  maxHealth: 260
 --- !u!114 &1317999744
 MonoBehaviour:
   m_ObjectHideFlags: 0
