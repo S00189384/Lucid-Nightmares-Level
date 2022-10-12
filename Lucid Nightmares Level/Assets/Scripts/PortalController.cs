@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PortalController : MonoBehaviour
 {
@@ -26,9 +27,9 @@ public class PortalController : MonoBehaviour
     {
         distanceFromPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        if (distanceFromPlayer <= interactDistance && Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (distanceFromPlayer <= interactDistance && Input.GetKeyDown(KeyCode.Return))
         {
-            //Load Scene
+            SceneManager.LoadScene(0);
         }
         if (distanceFromPlayer <= textDisplayDistance)
         {
@@ -41,6 +42,5 @@ public class PortalController : MonoBehaviour
             destinationText.enabled = false;
             interactText.enabled = false;
         }
-  
     }
 }
